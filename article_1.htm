@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="false" id="twcClient" name="twcClient" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <title>专注WEB前端开发 - BOBO园博吧</title>
+    <meta name="keywords" content="前端,前端开发,web前端,web前端开发,web前端工程师">
+    <meta name="description" content="园博吧资源网 - 专注web前端开发，包括web前端开发教程、书籍、api手册、前端框架、前端面试题、前端问答以及一些系列前端开发资源分享，是一个专业技术交流、资源共享平台！">
+    <meta name="author" content="园博吧资源网(www.yuanbo88.com)" />
+    <meta name="copyright" content="www.yuanbo88.com All Rights Reserved" />
+    <link rel="icon" href="http://www.yuanbo88.com/dist/images/favicon.ico?2016080201" type="image/x-icon" />
+    <link rel="shortcut icon" href="http://www.yuanbo88.com/dist/images/favicon.ico?2016080201" type="image/x-icon" />
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/base_min.css">
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/common_min.css">
+    <script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"></script>
+    <script src="http://www.yuanbo88.com/dist/minjs/layer/layer.js"></script>
+    <!--[if lt IE 9]>
+    <script>(function(){for(var a=arguments.length,b=0;a>b;b++)document.createElement(arguments[b])})("address","article","aside","audio","canvas","details","figcaption","figure","header","footer","hgroup","menu","nav","section","summary","time","video");</script> 
+    <![endif]-->
+    <script>
+    //加入收藏夹功能
+    function addBookmark() {
+        var title = "【园博吧资源网】专注WEB前端开发";
+        var url = "http://www.yuanbo88.com/";
+        if (window.sidebar) {
+            window.sidebar.addPanel(title, url, '');
+        } else {
+            try {
+                window.external.AddFavorite(url, title);
+            } catch (e) {
+                alert("您的浏览器不支持该功能,请使用Ctrl+D收藏本页");
+            }
+        }
+    }
+    </script>
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/other_min.css">
+    <script src="http://www.yuanbo88.com/dist/minjs/shBrushPlug.min.js"></script>
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/shCore/shCoreDefault.css">
+    <script>
+    SyntaxHighlighter.all();
+    </script>
+    <script>
+    SyntaxHighlighter.defaults['auto-links'] = false;
+    </script>
+    <script src="http://www.yuanbo88.com/dist/minjs/jquery.zclip.js"></script>
+    <style>
+    @media screen and (min-width: 768px) and (max-width: 959px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 900px;
+        }
+        .foot-wrap {
+            min-width: 900px;
+        }
+    }
+    
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 450px;
+        }
+        .foot-wrap {
+            min-width: 450px;
+        }
+    }
+    
+    @media only screen and (max-width: 479px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 350px;
+        }
+        .foot-wrap {
+            min-width: 350px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <!--public public_top.php start -->
+        <div id="top">
+            <div class="top-content clearfix">
+                <div class="top_r">
+                    <dl class="js-isNotLogin">
+                        <dd><a href="http://www.yuanbo88.com/m-user-center.html">个人中心</a></dd>
+                        <dd><a href="http://www.yuanbo88.com/sign.html">登录</a></dd>
+                        <dd><a href="http://www.yuanbo88.com/sign.html?type=2">注册</a></dd>
+                        <dd class="topr-qrcode">
+                            <a href="javascript:;">关注 “园博吧” 微信公众号</a>
+                            <div class="qr-code-wrap">
+                                <div class="qr-code-box">
+                                    <i class="triangle triangle_t"></i>
+                                    <i class="triangle triangle_t2"></i>
+                                    <p><img src="http://www.yuanbo88.com/dist/images/qrcode_258.jpg" height="150" width="150" alt="关注“园博吧”微信公众号"></p>
+                                    <p class="txt">园博吧</p>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt class="last"><a href="javascript:;" title="【园博吧资源网】专注WEB前端开发" rel="sidebar" onclick="addBookmark();">收藏本站</a></dt>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <!-- #top -->
+        <div id="topMian">
+            <div class="logo">
+                <a href="http://www.yuanbo88.com/" title="园博吧"><img src="http://www.yuanbo88.com/dist/images/styleimg/logo.png" height="60" width="170" alt="园博吧"></a>
+            </div>
+            <div class="topm_nav clearfix">
+                <ul class="clearfix fl">
+                    <li><a href="http://www.yuanbo88.com/category.html?type=1" class="s-title">前端开发</a></li>
+                    <li><a href="http://www.yuanbo88.com/category.html?type=2" class="s-title">前端扩展</a></li>
+                    <li><a href="http://www.yuanbo88.com/booklist.html" class="s-title">参考书籍<i class="icon-fire ml5"></i></a></li>
+                    <li><a href="http://www.yuanbo88.com/catedemo.html" class="s-title">演示案例<i class="icon-fire ml5"></i></a></li>
+                    <li>
+                        <a href="javascript:;" class="s-title">其他</a>
+                        <dl>
+                            <dt>
+                                <i class="triangle triangle_t"></i>
+                                <i class="triangle triangle_t2"></i>
+                            </dt>
+                            </dt>
+                            <dd><a href="http://www.yuanbo88.com/catewei.html">微话题</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/weiword.html">微言</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/dou.html">你真逗</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/about.html">关于</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+                <a class="demo-banner fr" href="http://www.yuanbo88.com/demo/22.html" title="园博吧Exclusive"><img src="http://www.yuanbo88.com/demo/demo_topic_22.jpg" alt="园博吧Exclusive" width="75" height="40"></a>
+            </div>
+            <div class="search-warp clearfix fr">
+                <p class="error-tips js-errorTips"></p>
+                <div class="search-area" data-search="top-banner">
+                    <input class="search-input" id="js-searchInput" placeholder="请输入搜索的关键词..." type="text" autocomplete="off" onkeypress="getKey();">
+                </div>
+                <div class="showhide-search" id="js-globalSearch"><i class="iconfont">&#xf002d;</i></div>
+            </div>
+        </div>
+        <!-- #topMian -->
+        <!--public public_top.php end -->
+    </header>
+    <div class="article-wrap">
+        <h1>jQuery插件的简单实现</h1>
+        <div class="article-content">
+            <p>扩展jQuery插件和方法的作用是非常强大的，它可以节省大量开发时间。</p>
+            <p>编写一个jQuery插件开始于给jQuery.fn加入​​新的功能属性,如下：</p>
+            <pre class="brush: js;">
+            jQuery.fn.myPlugin = function(){
+             
+              //插件代码
+             
+            };
+        </pre>
+            <p>如果你很喜欢用$符号，为了避免和其他JavaScript库冲突，我们最好将jQuery传递给一个自我执行的封闭程序，jQuery在此程序中映射为$符号，这样可以避免$号被其他库覆写。那么以上代码也可以写成这样：</p>
+            <pre class="brush: js;">
+            (function ($) {
+                $.fn.m​​yPlugin = function () {
+                    //插件代码
+                };
+            })(jQuery);
+        </pre>
+            <p>在这个封闭程序中，我们可以无限制的使用$符号来表示jQuery函数。</p>
+            <p>同样，我们也可以用以下方式来扩展jQuery插件：</p>
+            <pre class="brush: js;">
+        (function($){
+          $.fn.extend({
+             "bold":function(){
+               return this.css({fontWeight:"bold"});
+             }
+          });
+        })(jQuery);
+
+        //调用
+        $(function(){
+           $("p").bold();
+        });
+        </pre>
+            <p>
+                <strong>注： $.fn.extend 与 $.extend 的区别</strong>
+                <br/> 我们先把jQuery看成一个类，这样好理解一些。jQuery.extend()，是扩展的jQuery这个类。如果在这个类上面添加方法，就变成了jQuery这个类本身的方法（object）。但是，这个方式，只有jQuery这个类本身才能用，而jQuery类所实例化的对象是不能用的。所以，这个扩展就是所谓的静态方法。
+                <br/> 而jQuery.fn.extend()扩展的是jQuery对象（原型）的方法，对象就是类的实例化。
+                <br/> 以下是一个完整的jQuery插件实例：
+            </p>
+            <pre class="brush: js;">
+            //闭包限定命名空间
+            ;(function ($) {
+                $.fn.extend({
+                    "highLight": function (options) {
+                        //检测用户传进来的参数是否合法
+                        if (!isValid(options)){
+                            return this;
+                        }            
+                        var opts = $.extend({}, defaluts, options); 
+                        //使用jQuery.extend 覆盖插件默认参数
+
+                        return this.each(function () {  
+                            //这里的this 就是 jQuery对象。这里return 为了支持链式调用
+                            //遍历所有的要高亮的dom,当调用 highLight()插件的是一个集合的时候。
+                            var $this = $(this);
+                            //获取当前dom 的 jQuery对象，这里的this是当前循环的dom
+                            //根据参数来设置 dom的样式
+                            $this.css({
+                                backgroundColor: opts.background,
+                                color: opts.foreground
+                            });
+                            //格式化高亮文本
+                            var markup = $this.html();
+                            markup = $.fn.highLight.format(markup);
+                            $this.html(markup);
+                        });
+
+                    }
+                });
+                //默认参数
+                var defaluts = {
+                    foreground: 'red',
+                    background: 'yellow'
+                };
+
+                //公共的格式化 方法. 默认是加粗，用户可以通过覆盖该方法达到不同的格式化效果。
+                $.fn.highLight.format = function (str) {
+                    return "<strong>" + str + "</strong>";
+                }
+
+                //私有方法，检测参数是否合法
+                function isValid(options) {
+                    return !options || (options && typeof options === "object") ? true : false;
+                }
+            })(window.jQuery);
+
+            //调用
+            //调用者覆盖 插件暴露的共公方法
+            $.fn.highLight.format = function (txt) {
+               return "<em>" + txt + "</em>"
+            }
+
+            $(function () {
+               $("p").highLight({ foreground: 'orange', background: '#ccc' }); //调用自定义 高亮插件
+            });
+        </pre>
+        </div>
+    </div>
+    <!-- .article-wrap -->
+    <div class="foot-wrap">
+        <div class="social">
+            <a class="github" href="https://github.com/bobo88" target="_blank" title="github">github</a>
+            <a class="weibo" href="http://weibo.com/boob88" target="_blank" title="weibo">weibo</a>
+            <a class="facebook" href="https://www.facebook.com/yuanbo88" target="_blank" title="facebook">facebook</a>
+            <a class="google" href="https://plus.google.com/115948228959846742637" target="_blank" title="google">google</a>
+            <a class="twitter" href="https://twitter.com/yuanbo8888" target="_blank" title="twitter">twitter</a>
+            <a class="tumblr" href="http://yuanbo88.tumblr.com/" target="_blank" title="tumblr">tumblr</a>
+            <a class="linkedin" href="https://www.linkedin.com/in/bobo88" target="_blank" title="linkedin">linkedin</a>
+            <a class="wechat" href="javascript:;" title="wechat">
+                wechat 
+                <span>
+                    <i class="triangle triangle_b"></i>
+                    <i class="triangle triangle_b2"></i>
+                    <img src="http://www.yuanbo88.com/dist/images/qrcode_258.jpg" height="150" width="150" alt="关注“BOBO园博吧”微信公众号">  
+                </span>
+            </a>
+        </div>
+        <div class="foot-copyright">
+            Copyright ©2016-2017 yuanbo88.com All Rights Reserved.
+        </div>
+        <!-- .foot-copyright -->
+    </div>
+    <!-- .foot-wrap -->
+    <script src="http://www.yuanbo88.com/dist/minjs/plug.min.js"></script>
+    <script src="http://www.yuanbo88.com/dist/minjs/common.min.js"></script>
+</body>
+
+</html>

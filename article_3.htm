@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="false" id="twcClient" name="twcClient" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <title>专注WEB前端开发 - BOBO园博吧</title>
+    <meta name="keywords" content="前端,前端开发,web前端,web前端开发,web前端工程师">
+    <meta name="description" content="园博吧资源网 - 专注web前端开发，包括web前端开发教程、书籍、api手册、前端框架、前端面试题、前端问答以及一些系列前端开发资源分享，是一个专业技术交流、资源共享平台！">
+    <meta name="author" content="园博吧资源网(www.yuanbo88.com)" />
+    <meta name="copyright" content="www.yuanbo88.com All Rights Reserved" />
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/base_min.css">
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/common_min.css">
+    <script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"></script>
+    <script src="http://www.yuanbo88.com/dist/minjs/layer/layer.js"></script>
+    <!--[if lt IE 9]>
+	<script>(function(){for(var a=arguments.length,b=0;a>b;b++)document.createElement(arguments[b])})("address","article","aside","audio","canvas","details","figcaption","figure","header","footer","hgroup","menu","nav","section","summary","time","video");</script> 
+	<![endif]-->
+    <script>
+    //加入收藏夹功能
+    function addBookmark() {
+        var title = "【园博吧资源网】专注WEB前端开发";
+        var url = "http://www.yuanbo88.com/";
+        if (window.sidebar) {
+            window.sidebar.addPanel(title, url, '');
+        } else {
+            try {
+                window.external.AddFavorite(url, title);
+            } catch (e) {
+                alert("您的浏览器不支持该功能,请使用Ctrl+D收藏本页");
+            }
+        }
+    }
+    </script>
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/other_min.css">
+    <script src="http://www.yuanbo88.com/dist/minjs/shBrushPlug.min.js"></script>
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/shCore/shCoreDefault.css">
+    <script>
+    SyntaxHighlighter.all();
+    </script>
+    <script>
+    SyntaxHighlighter.defaults['auto-links'] = false;
+    </script>
+    <script src="http://www.yuanbo88.com/dist/minjs/jquery.zclip.js"></script>
+    <style>
+    @media screen and (min-width: 768px) and (max-width: 959px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 900px;
+        }
+        .foot-wrap {
+            min-width: 900px;
+        }
+    }
+    
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 450px;
+        }
+        .foot-wrap {
+            min-width: 450px;
+        }
+    }
+    
+    @media only screen and (max-width: 479px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 350px;
+        }
+        .foot-wrap {
+            min-width: 350px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <!--public public_top.php start -->
+        <div id="top">
+            <div class="top-content clearfix">
+                <div class="top_r">
+                    <dl class="js-isNotLogin">
+                        <dd><a href="http://www.yuanbo88.com/m-user-center.html">个人中心</a></dd>
+                        <dd><a href="http://www.yuanbo88.com/sign.html">登录</a></dd>
+                        <dd><a href="http://www.yuanbo88.com/sign.html?type=2">注册</a></dd>
+                        <dd class="topr-qrcode">
+                            <a href="javascript:;">关注 “园博吧” 微信公众号</a>
+                            <div class="qr-code-wrap">
+                                <div class="qr-code-box">
+                                    <i class="triangle triangle_t"></i>
+                                    <i class="triangle triangle_t2"></i>
+                                    <p><img src="http://www.yuanbo88.com/dist/images/qrcode_258.jpg" height="150" width="150" alt="关注“园博吧”微信公众号"></p>
+                                    <p class="txt">园博吧</p>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt class="last"><a href="javascript:;" title="【园博吧资源网】专注WEB前端开发" rel="sidebar" onclick="addBookmark();">收藏本站</a></dt>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <!-- #top -->
+        <div id="topMian">
+            <div class="logo">
+                <a href="http://www.yuanbo88.com/" title="园博吧"><img src="http://www.yuanbo88.com/dist/images/styleimg/logo.png" height="60" width="170" alt="园博吧"></a>
+            </div>
+            <div class="topm_nav clearfix">
+                <ul class="clearfix fl">
+                    <li><a href="http://www.yuanbo88.com/category.html?type=1" class="s-title">前端开发</a></li>
+                    <li><a href="http://www.yuanbo88.com/category.html?type=2" class="s-title">前端扩展</a></li>
+                    <li><a href="http://www.yuanbo88.com/booklist.html" class="s-title">参考书籍<i class="icon-fire ml5"></i></a></li>
+                    <li><a href="http://www.yuanbo88.com/catedemo.html" class="s-title">演示案例<i class="icon-fire ml5"></i></a></li>
+                    <li>
+                        <a href="javascript:;" class="s-title">其他</a>
+                        <dl>
+                            <dt>
+                                <i class="triangle triangle_t"></i>
+                                <i class="triangle triangle_t2"></i>
+                            </dt>
+                            </dt>
+                            <dd><a href="http://www.yuanbo88.com/catewei.html">微话题</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/weiword.html">微言</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/dou.html">你真逗</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/about.html">关于</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+                <a class="demo-banner fr" href="http://www.yuanbo88.com/demo/22.html" title="园博吧Exclusive"><img src="http://www.yuanbo88.com/demo/demo_topic_22.jpg" alt="园博吧Exclusive" width="75" height="40"></a>
+            </div>
+            <div class="search-warp clearfix fr">
+                <p class="error-tips js-errorTips"></p>
+                <div class="search-area" data-search="top-banner">
+                    <input class="search-input" id="js-searchInput" placeholder="请输入搜索的关键词..." type="text" autocomplete="off" onkeypress="getKey();">
+                </div>
+                <div class="showhide-search" id="js-globalSearch"><i class="iconfont">&#xf002d;</i></div>
+            </div>
+        </div>
+        <!-- #topMian -->
+        <!--public public_top.php end -->
+    </header>
+    <div class="article-wrap">
+        <h1>CSS解决方案一</h1>
+        <div class="article-content">
+            <p><strong>1、为什么要清除浮动?</strong></p>
+            <p>
+                一个块级元素的高度如果没有设置height，那么其高度就是由里面的子元素来撑开的，如果子元素使用浮动，脱离了标准的文档流，那么父元素的高度会将其 忽略，你可以使用firebug查看下如果不清除浮动，父元素会出现高度不够，那样如果设置border或者background都得不到正确的解析。
+            </p>
+            <pre class="brush: css;">
+	/*简洁版*/
+	.clearfix:before, .clearfix:after {
+		content:"";
+		display:table;
+	}
+	.clearfix:after{
+		clear:both;
+		overflow:hidden;
+	}
+	.clearfix{
+	    zoom:1;
+	}
+	/* 经典版 */
+	.clearfix:after {
+	    visibility: hidden;
+	    display: block;
+	    font-size: 0;
+	    content: " ";
+	    clear: both;
+	    height: 0;
+	}
+	* html .clearfix             { zoom: 1; } /* IE6 */
+	*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+</pre>
+            <p>
+                注：clearfix的方法主要就是在浮动元素的父元素上加上一个clearfix class，然后这个父元素的框就会包括所有的浮动子元素。
+            </p>
+            <pre class="brush: css;">
+	/* overflow:auto */
+	#demo2{
+		overflow:auto;*zoom:1;
+	}
+	/*或 overflow:hidden */
+	#demo2{
+		overflow:hidden;*zoom:1;
+	}
+</pre>
+            <p>注：这种方法主要是对父元素设置css，所以不需要加个class，下面的inline-block方法相同，只需设置父元素的css即可。</p>
+            <br/>
+            <br/>
+            <p><strong>2、代码写三角形：</strong></p>
+            <pre class="brush: css;">
+	i.triangle{display: inline-block; width: 0; height: 0; border:50px solid transparent; zoom:1; border-top: 50px solid #f00; border-left: 50px solid #000; border-bottom: 50px solid #069; border-right: 50px solid #f60;} 
+</pre>
+            <p><img src="http://www.yuanbo88.com/dist/images/domeimg/lazyload.gif" data-original="http://www.yuanbo88.com/dist/images/domeimg/article/2016/css_1.png" alt=""></p>
+            <p>
+                注：以前不知道原来如果宽度和高度为0，border也可以组成一个框，然后明白了四个上下左右border组成一个框，老不明白这三个border是怎么用的，现在明白了原来三个边框也一样可以组成一个框啊。如果不明白原理可以自己在纸上画画，这个就像拼图似的，一个长方形或正方形可以分成四个三角形也可以分成三个三角形还可以分成两个三角形。不过分成两个的三角形还是不太常用，所以暂且不说，如果你感兴趣可以自己谷歌下啊。分割原理如下图：
+            </p>
+            <p><img src="http://www.yuanbo88.com/dist/images/domeimg/lazyload.gif" data-original="http://www.yuanbo88.com/dist/images/domeimg/article/2016/css_2.png" alt=""></p>
+            <br/>
+            <br/>
+            <p><strong>3、单行省略号纯css解决方案：</strong></p>
+            <p>
+                核心css代码
+                <br/> firefox从7.0开始兼容text-overflow:ellipsis;这样的话，以后单行的省略号就可以不借助后台程序或者js来做到浏览器兼容了，其核心代码为：
+            </p>
+            <pre class="brush: css;">
+	selector{
+		-o-text-overflow: ellipsis;/*兼容opera*/
+		text-overflow: ellipsis;/*这就是省略号喽*/		  
+		overflow: hidden;/*设置超过的隐藏*/
+		white-space: nowrap;/*设置不折行*/
+		width:200px;/*设置宽度*/
+	}
+</pre>
+        </div>
+    </div>
+    <!-- .article-wrap -->
+    <div class="foot-wrap">
+        <div class="social">
+            <a class="github" href="https://github.com/bobo88" target="_blank" title="github">github</a>
+            <a class="weibo" href="http://weibo.com/boob88" target="_blank" title="weibo">weibo</a>
+            <a class="facebook" href="https://www.facebook.com/yuanbo88" target="_blank" title="facebook">facebook</a>
+            <a class="google" href="https://plus.google.com/115948228959846742637" target="_blank" title="google">google</a>
+            <a class="twitter" href="https://twitter.com/yuanbo8888" target="_blank" title="twitter">twitter</a>
+            <a class="tumblr" href="http://yuanbo88.tumblr.com/" target="_blank" title="tumblr">tumblr</a>
+            <a class="linkedin" href="https://www.linkedin.com/in/bobo88" target="_blank" title="linkedin">linkedin</a>
+            <a class="wechat" href="javascript:;" title="wechat">
+				wechat 
+				<span>
+					<i class="triangle triangle_b"></i>
+					<i class="triangle triangle_b2"></i>
+					<img src="http://www.yuanbo88.com/dist/images/qrcode_258.jpg" height="150" width="150" alt="关注“BOBO园博吧”微信公众号">	
+				</span>
+			</a>
+        </div>
+        <div class="foot-copyright">
+            Copyright ©2016-2017 yuanbo88.com All Rights Reserved.
+        </div>
+        <!-- .foot-copyright -->
+    </div>
+    <!-- .foot-wrap -->
+    <script src="http://www.yuanbo88.com/dist/minjs/plug.min.js"></script>
+    <script src="http://www.yuanbo88.com/dist/minjs/common.min.js"></script>
+</body>
+
+</html>

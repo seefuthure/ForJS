@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="false" id="twcClient" name="twcClient" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <title>专注WEB前端开发 - BOBO园博吧</title>
+    <meta name="keywords" content="前端,前端开发,web前端,web前端开发,web前端工程师">
+    <meta name="description" content="园博吧资源网 - 专注web前端开发，包括web前端开发教程、书籍、api手册、前端框架、前端面试题、前端问答以及一些系列前端开发资源分享，是一个专业技术交流、资源共享平台！">
+    <meta name="author" content="园博吧资源网(www.yuanbo88.com)" />
+    <meta name="copyright" content="www.yuanbo88.com All Rights Reserved" />
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/base_min.css">
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/common_min.css">
+    <script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"></script>
+    <script src="http://www.yuanbo88.com/dist/minjs/layer/layer.js"></script>
+    <!--[if lt IE 9]>
+	<script>(function(){for(var a=arguments.length,b=0;a>b;b++)document.createElement(arguments[b])})("address","article","aside","audio","canvas","details","figcaption","figure","header","footer","hgroup","menu","nav","section","summary","time","video");</script> 
+	<![endif]-->
+    <script>
+    //加入收藏夹功能
+    function addBookmark() {
+        var title = "【园博吧资源网】专注WEB前端开发";
+        var url = "http://www.yuanbo88.com/";
+        if (window.sidebar) {
+            window.sidebar.addPanel(title, url, '');
+        } else {
+            try {
+                window.external.AddFavorite(url, title);
+            } catch (e) {
+                alert("您的浏览器不支持该功能,请使用Ctrl+D收藏本页");
+            }
+        }
+    }
+    </script>
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/other_min.css">
+    <script src="http://www.yuanbo88.com/dist/minjs/shBrushPlug.min.js"></script>
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/shCore/shCoreDefault.css">
+    <script>
+    SyntaxHighlighter.all();
+    </script>
+    <script>
+    SyntaxHighlighter.defaults['auto-links'] = false;
+    </script>
+    <script src="http://www.yuanbo88.com/dist/minjs/jquery.zclip.js"></script>
+    <style>
+    @media screen and (min-width: 768px) and (max-width: 959px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 900px;
+        }
+        .foot-wrap {
+            min-width: 900px;
+        }
+    }
+    
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 450px;
+        }
+        .foot-wrap {
+            min-width: 450px;
+        }
+    }
+    
+    @media only screen and (max-width: 479px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 350px;
+        }
+        .foot-wrap {
+            min-width: 350px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <!--public public_top.php start -->
+        <div id="top">
+            <div class="top-content clearfix">
+                <div class="top_r">
+                    <dl class="js-isNotLogin">
+                        <dd><a href="http://www.yuanbo88.com/m-user-center.html">个人中心</a></dd>
+                        <dd><a href="http://www.yuanbo88.com/sign.html">登录</a></dd>
+                        <dd><a href="http://www.yuanbo88.com/sign.html?type=2">注册</a></dd>
+                        <dd class="topr-qrcode">
+                            <a href="javascript:;">关注 “园博吧” 微信公众号</a>
+                            <div class="qr-code-wrap">
+                                <div class="qr-code-box">
+                                    <i class="triangle triangle_t"></i>
+                                    <i class="triangle triangle_t2"></i>
+                                    <p><img src="http://www.yuanbo88.com/dist/images/qrcode_258.jpg" height="150" width="150" alt="关注“园博吧”微信公众号"></p>
+                                    <p class="txt">园博吧</p>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt class="last"><a href="javascript:;" title="【园博吧资源网】专注WEB前端开发" rel="sidebar" onclick="addBookmark();">收藏本站</a></dt>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <!-- #top -->
+        <div id="topMian">
+            <div class="logo">
+                <a href="http://www.yuanbo88.com/" title="园博吧"><img src="http://www.yuanbo88.com/dist/images/styleimg/logo.png" height="60" width="170" alt="园博吧"></a>
+            </div>
+            <div class="topm_nav clearfix">
+                <ul class="clearfix fl">
+                    <li><a href="http://www.yuanbo88.com/category.html?type=1" class="s-title">前端开发</a></li>
+                    <li><a href="http://www.yuanbo88.com/category.html?type=2" class="s-title">前端扩展</a></li>
+                    <li><a href="http://www.yuanbo88.com/booklist.html" class="s-title">参考书籍<i class="icon-fire ml5"></i></a></li>
+                    <li><a href="http://www.yuanbo88.com/catedemo.html" class="s-title">演示案例<i class="icon-fire ml5"></i></a></li>
+                    <li>
+                        <a href="javascript:;" class="s-title">其他</a>
+                        <dl>
+                            <dt>
+                                <i class="triangle triangle_t"></i>
+                                <i class="triangle triangle_t2"></i>
+                            </dt>
+                            </dt>
+                            <dd><a href="http://www.yuanbo88.com/catewei.html">微话题</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/weiword.html">微言</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/dou.html">你真逗</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/about.html">关于</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+                <a class="demo-banner fr" href="http://www.yuanbo88.com/demo/22.html" title="园博吧Exclusive"><img src="http://www.yuanbo88.com/demo/demo_topic_22.jpg" alt="园博吧Exclusive" width="75" height="40"></a>
+            </div>
+            <div class="search-warp clearfix fr">
+                <p class="error-tips js-errorTips"></p>
+                <div class="search-area" data-search="top-banner">
+                    <input class="search-input" id="js-searchInput" placeholder="请输入搜索的关键词..." type="text" autocomplete="off" onkeypress="getKey();">
+                </div>
+                <div class="showhide-search" id="js-globalSearch"><i class="iconfont">&#xf002d;</i></div>
+            </div>
+        </div>
+        <!-- #topMian -->
+        <!--public public_top.php end -->
+    </header>
+    <div class="article-wrap">
+        <h1>代码高亮美化插件-----SyntaxHighlighter</h1>
+        <div class="article-content">
+            <p><strong>IT类文章博客，代码高亮美化插件-----SyntaxHighlighter</strong></p>
+            <p>
+                最近在做一个类似个人博客的网站，因为文章中会用到各种代码，主要是Javascript，CSS，PHP，XML等。这些代码如果单纯的用html&css来处理，稍显繁琐。
+                <br/> 于是，在网上搜索了一些关于文章中代码如何美化高亮的信息，找到有关于SyntaxHighlighter和Google-Code-Prettify的资料。
+                <br/> 鉴于SyntaxHighlighter已经是一个相对比较成熟稳定的老牌语法高亮插件了，而且还支持复制、在新窗口查看源代码等较多的可选功能。所以就重点下载了SyntaxHighlighter来作为网站的代码高亮插件，版本是最新的3.0.83。至于Google-Code-Prettify，就不再赘述。
+            </p>
+            <br/>
+            <br/>
+            <p>
+                <img src="dist/images/domeimg/lazyload.gif" data-original="dist/images/domeimg/article/2016/syntaxhighlighter/syntaxhighlighter.jpg" alt="syntaxhighlighter">
+                <br/>
+            </p>
+            <p><strong>一、去官网下载SyntaxHighlighter：</strong></p>
+            <p>
+                SyntaxHighlighter的官网：<a href="http://alexgorbatchev.com/SyntaxHighlighter/">http://alexgorbatchev.com/SyntaxHighlighter/</a>
+                <br/> SyntaxHighlighter的下载地址：
+                <a href="http://alexgorbatchev.com/SyntaxHighlighter/download/">http://alexgorbatchev.com/SyntaxHighlighter/download/</a>
+                <br/>
+            </p>
+            <br/>
+            <br/>
+            <p><strong>二、使用SyntaxHighlighter：</strong></p>
+            <p>
+                下载完成后，解压压缩文件，得到文件目录如下：
+                <br/>
+                <img src="dist/images/domeimg/lazyload.gif" data-original="dist/images/domeimg/article/2016/syntaxhighlighter/syntaxhighlighter_folder.jpg" alt="syntaxhighlighter">
+                <br/> 假设网页文件demo.htm存放在一个目录,复制上图其中的Scripts文件夹和styles文件夹，确保和demo.htm在同一个目录下面。
+                <br/>
+                <strong>1、</strong>在页面中引入shCore.js核心文件。
+                <br/>
+                <strong>2、</strong>页面中引入需要代码着色对应语言的笔刷脚本文件(brush.js)。
+                <br/> 注：-----插件index.html模型中用的是shBrushJScript.js。
+                <br/>
+                <strong>3、</strong>页面中引入代码着色主题色样式文件。
+                <br/> 注：-----插件index.html模型中用的是shCoreDefault.css。
+                <br/>
+                <strong>4、</strong>在head部分调用SyntaxHighlighter.all();开始解析&lt;pre /&gt;。
+                <br/>
+                <strong>5、</strong>在body中编写代码，代码包裹在&lt;pre class="brush: js;"&gt;……&lt;/pre&gt;中。
+                <br/> 注：-----这里的brush: **;是固定写法，后面的js是和上面的笔刷脚本文件相对应的。也就是说，如果上面引用的笔刷脚本文件是shBrushCss.js，那么这里可以用brush: css;来高亮css代码。
+                <br/> 沿用下载文件中的index.html例子：
+                <br/>
+                <pre class="brush: js;">
+	function helloSyntaxHighlighter()
+	{
+		return "hi!";
+	}
+</pre>
+            </p>
+            <br/>
+            <br/>
+            <p><strong>三、个人使用方法：</strong></p>
+            <p>
+                因为本人网站主要涉及的代码无外乎Javascript，php，css，xml等几种，所以笔者就直接将shCore.js文件和对应的那几种笔刷脚本文件合并到一个文件中，命名为shBrushPlug.js，并压缩处理为shBrushPlug.min.js。
+                <br/> 统一引入到head中。这样就免去了逐一引入笔刷脚本文件的繁琐，也减少了http请求次数。后期如果需要增减笔刷文件，修改shBrushPlug.js即可。
+                <br/>
+                <img src="dist/images/domeimg/lazyload.gif" data-original="dist/images/domeimg/article/2016/syntaxhighlighter/syntaxhighlighter_shBrushPlug.jpg" alt="syntaxhighlighter">
+                <br/>
+            </p>
+            <br/>
+            <br/>
+            <p><strong>四、注意事项：</strong></p>
+            <p>
+                1、不管是使用SyntaxHighlighter，还是使用Google-Code-Prettify，源代码中的"
+                < "和">"都应该替换成"&amp;lt;"和"&amp;gt;"，否则可能无法正确进行语法高亮修饰。
+                    <br/> 2、Syntaxhighlighter在Chrome浏览器中会显示竖向滚动条，让代码框看起来很不美观，修复的方法是定义overflow-y属性，可以直接修改源文件，也可以在主题样式表中写，Sola选择写在主题的style.css中：
+                    <br/>
+                    <pre class="brush: css;">
+	.*** .syntaxhighlighter {
+	    overflow-y: hidden !important;
+	}
+</pre>
+                    <br/> 上面代码中的***可以用文章中.syntaxhighlighter的任意父元素class来代替。
+                    <br/> 因为源文件中使用.syntaxhighlighter和!important定义，要覆盖掉这个CSS，需要主题中的样式有更高权重。
+                    <br/> 所以如果你的文章中有一个公用class（eg: .article-content-wrap）并包裹.syntaxhighlighter，用.article-content-wrap提升权重。那么就可以写成这样：
+                    <br/>
+                    <pre class="brush: css;">
+	.article-content-wrap .syntaxhighlighter {
+	    overflow-y: hidden !important;
+	}
+</pre>
+                    <br/>
+            </p>
+            <br/>
+            <br/>
+        </div>
+    </div>
+    <!-- .article-wrap -->
+    <div class="foot-wrap">
+        <div class="social">
+            <a class="github" href="https://github.com/bobo88" target="_blank" title="github">github</a>
+            <a class="weibo" href="http://weibo.com/boob88" target="_blank" title="weibo">weibo</a>
+            <a class="facebook" href="https://www.facebook.com/yuanbo88" target="_blank" title="facebook">facebook</a>
+            <a class="google" href="https://plus.google.com/115948228959846742637" target="_blank" title="google">google</a>
+            <a class="twitter" href="https://twitter.com/yuanbo8888" target="_blank" title="twitter">twitter</a>
+            <a class="tumblr" href="http://yuanbo88.tumblr.com/" target="_blank" title="tumblr">tumblr</a>
+            <a class="linkedin" href="https://www.linkedin.com/in/bobo88" target="_blank" title="linkedin">linkedin</a>
+            <a class="wechat" href="javascript:;" title="wechat">
+				wechat 
+				<span>
+					<i class="triangle triangle_b"></i>
+					<i class="triangle triangle_b2"></i>
+					<img src="http://www.yuanbo88.com/dist/images/qrcode_258.jpg" height="150" width="150" alt="关注“BOBO园博吧”微信公众号">	
+				</span>
+			</a>
+        </div>
+        <div class="foot-copyright">
+            Copyright ©2016-2017 yuanbo88.com All Rights Reserved.
+        </div>
+        <!-- .foot-copyright -->
+    </div>
+    <!-- .foot-wrap -->
+    <script src="http://www.yuanbo88.com/dist/minjs/plug.min.js"></script>
+    <script src="http://www.yuanbo88.com/dist/minjs/common.min.js"></script>
+</body>
+
+</html>
