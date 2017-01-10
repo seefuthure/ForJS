@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="false" id="twcClient" name="twcClient" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <title>专注WEB前端开发 - BOBO园博吧</title>
+    <meta name="keywords" content="前端,前端开发,web前端,web前端开发,web前端工程师">
+    <meta name="description" content="园博吧资源网 - 专注web前端开发，包括web前端开发教程、书籍、api手册、前端框架、前端面试题、前端问答以及一些系列前端开发资源分享，是一个专业技术交流、资源共享平台！">
+    <meta name="author" content="园博吧资源网(www.yuanbo88.com)" />
+    <meta name="copyright" content="www.yuanbo88.com All Rights Reserved" />
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/base_min.css">
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/common_min.css">
+    <script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"></script>
+    <script src="http://www.yuanbo88.com/dist/minjs/layer/layer.js"></script>
+    <!--[if lt IE 9]>
+	<script>(function(){for(var a=arguments.length,b=0;a>b;b++)document.createElement(arguments[b])})("address","article","aside","audio","canvas","details","figcaption","figure","header","footer","hgroup","menu","nav","section","summary","time","video");</script> 
+	<![endif]-->
+    <script>
+    //加入收藏夹功能
+    function addBookmark() {
+        var title = "【园博吧资源网】专注WEB前端开发";
+        var url = "http://www.yuanbo88.com/";
+        if (window.sidebar) {
+            window.sidebar.addPanel(title, url, '');
+        } else {
+            try {
+                window.external.AddFavorite(url, title);
+            } catch (e) {
+                alert("您的浏览器不支持该功能,请使用Ctrl+D收藏本页");
+            }
+        }
+    }
+    </script>
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/other_min.css">
+    <script src="http://www.yuanbo88.com/dist/minjs/shBrushPlug.min.js"></script>
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/shCore/shCoreDefault.css">
+    <script>
+    SyntaxHighlighter.all();
+    </script>
+    <script>
+    SyntaxHighlighter.defaults['auto-links'] = false;
+    </script>
+    <script src="http://www.yuanbo88.com/dist/minjs/jquery.zclip.js"></script>
+    <style>
+    @media screen and (min-width: 768px) and (max-width: 959px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 900px;
+        }
+        .foot-wrap {
+            min-width: 900px;
+        }
+    }
+    
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 450px;
+        }
+        .foot-wrap {
+            min-width: 450px;
+        }
+    }
+    
+    @media only screen and (max-width: 479px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 350px;
+        }
+        .foot-wrap {
+            min-width: 350px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <!--public public_top.php start -->
+        <div id="top">
+            <div class="top-content clearfix">
+                <div class="top_r">
+                    <dl class="js-isNotLogin">
+                        <dd><a href="http://www.yuanbo88.com/m-user-center.html">个人中心</a></dd>
+                        <dd><a href="http://www.yuanbo88.com/sign.html">登录</a></dd>
+                        <dd><a href="http://www.yuanbo88.com/sign.html?type=2">注册</a></dd>
+                        <dd class="topr-qrcode">
+                            <a href="javascript:;">关注 “园博吧” 微信公众号</a>
+                            <div class="qr-code-wrap">
+                                <div class="qr-code-box">
+                                    <i class="triangle triangle_t"></i>
+                                    <i class="triangle triangle_t2"></i>
+                                    <p><img src="http://www.yuanbo88.com/dist/images/qrcode_258.jpg" height="150" width="150" alt="关注“园博吧”微信公众号"></p>
+                                    <p class="txt">园博吧</p>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt class="last"><a href="javascript:;" title="【园博吧资源网】专注WEB前端开发" rel="sidebar" onclick="addBookmark();">收藏本站</a></dt>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <!-- #top -->
+        <div id="topMian">
+            <div class="logo">
+                <a href="http://www.yuanbo88.com/" title="园博吧"><img src="http://www.yuanbo88.com/dist/images/styleimg/logo.png" height="60" width="170" alt="园博吧"></a>
+            </div>
+            <div class="topm_nav clearfix">
+                <ul class="clearfix fl">
+                    <li><a href="http://www.yuanbo88.com/category.html?type=1" class="s-title">前端开发</a></li>
+                    <li><a href="http://www.yuanbo88.com/category.html?type=2" class="s-title">前端扩展</a></li>
+                    <li><a href="http://www.yuanbo88.com/booklist.html" class="s-title">参考书籍<i class="icon-fire ml5"></i></a></li>
+                    <li><a href="http://www.yuanbo88.com/catedemo.html" class="s-title">演示案例<i class="icon-fire ml5"></i></a></li>
+                    <li>
+                        <a href="javascript:;" class="s-title">其他</a>
+                        <dl>
+                            <dt>
+                                <i class="triangle triangle_t"></i>
+                                <i class="triangle triangle_t2"></i>
+                            </dt>
+                            </dt>
+                            <dd><a href="http://www.yuanbo88.com/catewei.html">微话题</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/weiword.html">微言</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/dou.html">你真逗</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/about.html">关于</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+                <a class="demo-banner fr" href="http://www.yuanbo88.com/demo/22.html" title="园博吧Exclusive"><img src="http://www.yuanbo88.com/demo/demo_topic_22.jpg" alt="园博吧Exclusive" width="75" height="40"></a>
+            </div>
+            <div class="search-warp clearfix fr">
+                <p class="error-tips js-errorTips"></p>
+                <div class="search-area" data-search="top-banner">
+                    <input class="search-input" id="js-searchInput" placeholder="请输入搜索的关键词..." type="text" autocomplete="off" onkeypress="getKey();">
+                </div>
+                <div class="showhide-search" id="js-globalSearch"><i class="iconfont">&#xf002d;</i></div>
+            </div>
+        </div>
+        <!-- #topMian -->
+        <!--public public_top.php end -->
+    </header>
+    <div class="article-wrap">
+        <h1>如何用node.js批量给图片加水印</h1>
+        <div class="article-content">
+            <p>上一篇我们讲了如何用node.js给图片加水印，但是只是给某一张图片加，并没有涉及到批量处理。这一篇，我们学习如果批量进行图片加水印处理。</p>
+            <h3><strong>一、准备工作：</strong></h3>
+            <section>
+                首先，你要阅读完这篇文章：<a href="http://www.yuanbo88.com/article.php?rid=31" target="_blank">http://www.yuanbo88.com/article.php?rid=31</a>。
+                <br/> 然后，我们安装node.js的一个模块：
+                <strong>imageinfo</strong>。
+                <br/>
+                <pre class="brush: js;">
+npm install imageinfo
+</pre>
+            </section>
+            <br/>
+            <br/>
+            <h3><strong>二、直接上DEMO：</strong></h3>
+            <section>
+                步骤如下：
+                <br/>
+                <strong>step1：</strong>文件夹结构
+                <br/>
+                <img src="dist/images/domeimg/lazyload.gif" data-original="http://www.yuanbo88.com/dist/images/domeimg/article/2016/nodeWater/node_water_4.jpg" alt="nodejs给图片批量加水印">
+                <br/>
+                <strong>step2：</strong>JS代码
+                <br/>
+                <pre class="brush: js;">
+//引用文件系统模块
+var fs = require("fs");
+//引用imageinfo模块
+var imageInfo = require("imageinfo");
+//引用images模块
+var images = require('images');
+var watermarkImg = images('water_logo.png');
+
+function readFileList(path, filesList) {
+    var files = fs.readdirSync(path);
+    files.forEach(function (itm, index) {
+        var stat = fs.statSync(path + itm);
+        if (stat.isDirectory()) {
+        	//递归读取文件
+            readFileList(path + itm + "/", filesList)
+        } else {
+            var obj = {};//定义一个对象存放文件的路径和名字
+            obj.path = path;//路径
+            obj.filename = itm//名字
+            filesList.push(obj);
+        }
+    })
+}
+var getFiles = {
+	//获取文件夹下的所有文件
+    getFileList: function (path) {
+        var filesList = [];
+        readFileList(path, filesList);
+        return filesList;
+    },
+    //获取文件夹下的所有图片
+    getImageFiles: function (path) {
+        var imageList = [];
+
+        this.getFileList(path).forEach((item) =&gt; {
+            var ms = imageInfo(fs.readFileSync(item.path + item.filename));
+
+            ms.mimeType && (imageList.push(item.filename))
+        });
+        return imageList;
+    }
+};
+
+//获取文件夹下的所有图片
+var photos = getFiles.getImageFiles("./public/");
+for (var i = 0; i &lt; photos.length; i++) {
+	var sourceImg = images('./public/'+photos[i]);
+	var sourceImgName = photos[i];
+	var sWidth = sourceImg.width();
+	var sHeight = sourceImg.height();
+	var wmWidth = watermarkImg.width();
+	var wmHeight = watermarkImg.height();
+	images(sourceImg)
+		// 设置绘制的坐标位置，右下角距离 40px
+		.draw(watermarkImg, sWidth - wmWidth - 40, sHeight - wmHeight - 40)
+		// 保存格式会自动识别
+		.save('./saveImg/'+ sourceImgName+'');
+}
+</pre>
+                <strong>step3：</strong>运行node命令后，文件夹结构如下图
+                <br/>
+                <img src="dist/images/domeimg/lazyload.gif" data-original="http://www.yuanbo88.com/dist/images/domeimg/article/2016/nodeWater/node_water_5.jpg" alt="nodejs给图片批量加水印">
+                <br/>
+                <strong>step4：</strong>查看批量加水印的图片
+                <br/>
+                <img src="dist/images/domeimg/lazyload.gif" data-original="http://www.yuanbo88.com/dist/images/domeimg/article/2016/nodeWater/node_water_6.jpg" alt="nodejs给图片批量加水印">
+                <br/>
+            </section>
+            <br/>
+            <br/>
+        </div>
+    </div>
+    <!-- .article-wrap -->
+    <div class="foot-wrap">
+        <div class="social">
+            <a class="github" href="https://github.com/bobo88" target="_blank" title="github">github</a>
+            <a class="weibo" href="http://weibo.com/boob88" target="_blank" title="weibo">weibo</a>
+            <a class="facebook" href="https://www.facebook.com/yuanbo88" target="_blank" title="facebook">facebook</a>
+            <a class="google" href="https://plus.google.com/115948228959846742637" target="_blank" title="google">google</a>
+            <a class="twitter" href="https://twitter.com/yuanbo8888" target="_blank" title="twitter">twitter</a>
+            <a class="tumblr" href="http://yuanbo88.tumblr.com/" target="_blank" title="tumblr">tumblr</a>
+            <a class="linkedin" href="https://www.linkedin.com/in/bobo88" target="_blank" title="linkedin">linkedin</a>
+            <a class="wechat" href="javascript:;" title="wechat">
+				wechat 
+				<span>
+					<i class="triangle triangle_b"></i>
+					<i class="triangle triangle_b2"></i>
+					<img src="http://www.yuanbo88.com/dist/images/qrcode_258.jpg" height="150" width="150" alt="关注“BOBO园博吧”微信公众号">	
+				</span>
+			</a>
+        </div>
+        <div class="foot-copyright">
+            Copyright ©2016-2017 yuanbo88.com All Rights Reserved.
+        </div>
+        <!-- .foot-copyright -->
+    </div>
+    <!-- .foot-wrap -->
+    <script src="http://www.yuanbo88.com/dist/minjs/plug.min.js"></script>
+    <script src="http://www.yuanbo88.com/dist/minjs/common.min.js"></script>
+</body>
+
+</html>
