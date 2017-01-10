@@ -210,62 +210,196 @@
         <!--public public_top.php end -->
     </header>
     <div class="article-wrap">
-        <h1>用node.js给图片加水印</h1>
+        <h1>详解iframe中的各种页面操作</h1>
         <div class="article-content">
-            <h3><strong>一、准备工作：</strong></h3>
-            <section>
-                首先，确保你本地已经安装好了node环境。
-                <br/> 然后，我们进行图像编辑操作需要用到一个Node.js的库：
-                <strong>images</strong>。
-                <br/> 这个库的地址是：https://github.com/zhangyuanwei/node-images，作者定义它为 “Node.js轻量级跨平台图像编解码库” ，并提供了一系列接口。
-                <br/> 我们要做的首先是安装images库：
+            <p>
+                在我们的日常开发中，不管是WEB前端，还是后台程序，都不可避免的要接触到iframe。那么，我们可能会碰到以下问题：
+                <br/> 1、主页面如何操作iframe中的DOM元素操作和方法？
+                <br/> 2、iframe如何操作主页面中的DOM元素和方法？
+                <br/> 3、在主页面中，如何操作iframe中的嵌套iframe？
+                <br/> 4、其他情况等等......
+                <br/> 废话不多说，直接上DEMO。
                 <br/>
-                <pre class="brush: js;">
-npm install images
+                <br/>
+            </p>
+            <h3><strong>一、IFRAME DEMO:</strong></h3>
+            <section>
+                <p>在做DEMO之前， 我们首先要注意一下：</p>
+                <p><strong>DEMO必须放在Web服务器上面才行。</strong>
+                    <br/>
+                </p>
+                <style>
+                iframe {
+                    margin-top: 20px;
+                    display: block;
+                }
+                
+                button {
+                    margin: 0 10px 10px 0;
+                    padding: 0 10px;
+                    height: 25px;
+                    line-height: 25px;
+                    color: #fff;
+                    background: #3498db;
+                }
+                
+                .d1-wrap {
+                    background: #eee;
+                }
+                
+                #d1 {
+                    margin-bottom: 10px;
+                    padding-top: 20px;
+                    height: 20px;
+                    line-height: 20px;
+                    color: #000;
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+                </style>
+                <script type="text/javascript">
+                function father() {
+                    alert("爷爷 method...");
+                }
+                </script>
+                <div class="d1-wrap">
+                    <p id="d1">我是iframe爷爷
+                        <p/>
+                        <button onclick='window.frames["c1"].children();'>爷调父</button>
+                        <button onclick='window.frames["c1"].frames["c2"].sunzi();'>爷调孙</button>
+                        <button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('#d2').innerHTML );">爷调父DOM元素（兼容ie8以上）</button>
+                        <button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('iframe[name=c2]').contentDocument.querySelector('#d3').innerHTML );">爷调孙DOM元素（兼容ie8以上）</button>
+                        <button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('d2').innerHTML );">爷调父DOM元素</button>
+                        <button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('c2').contentWindow.document.getElementById('d3').innerHTML );">爷调孙DOM元素</button>
+                        <button onclick="alert( $('#c1').contents().find('#d2').html() );">jQuery方法：爷调父DOM元素</button>
+                        <button onclick="alert( $('#c1').contents().find('#c2').contents().find('#d3').html() );">jQuery方法：爷调孙DOM元素</button>
+                        <div>
+                            <iframe src="other/d2.html" id="c1" name="c1" style="width:100%; height:300px;"></iframe>
+                        </div>
+                </div>
+                <br/>
+                <p><strong>二、附上DEMO相关的三个页面代码：</strong></p>
+                <p>d1.html页面（主页面，也就是爷爷级别）：</p>
+                <pre class="brush: xml;">
+&lt;!DOCTYPE html&gt;  
+&lt;html&gt;  
+  &lt;head&gt;  
+    &lt;title&gt;d1.html&lt;/title&gt;  
+    &lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;  
+    &lt;script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
+    &lt;style&gt;
+      iframe{ margin-top: 20px; display: block;}
+      button{ margin: 0 10px 10px 0;}
+    &lt;/style&gt;
+  &lt;/head&gt;  
+  &lt;script type="text/javascript"&gt;  
+    function father(){  
+        alert("爷爷 method...");  
+    }  
+  &lt;/script&gt;  
+  &lt;body&gt;
+    &lt;p id="d1"&gt;我是iframe爷爷&lt;p/&gt;  
+    &lt;button onclick='window.frames["c1"].children();'&gt;爷调父&lt;/button&gt;  
+    &lt;button onclick='window.frames["c1"].frames["c2"].sunzi();'&gt;爷调孙&lt;/button&gt;  
+    &lt;button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('#d2').innerHTML );"&gt;爷调父DOM元素（兼容ie8以上）&lt;/button&gt;  
+    &lt;button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('iframe[name=c2]').contentDocument.querySelector('#d3').innerHTML );"&gt;爷调孙DOM元素（兼容ie8以上）&lt;/button&gt;  
+
+    &lt;button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('d2').innerHTML );"&gt;爷调父DOM元素&lt;/button&gt;  
+    &lt;button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('c2').contentWindow.document.getElementById('d3').innerHTML );"&gt;爷调孙DOM元素&lt;/button&gt; 
+
+    &lt;button onclick="alert( $('#c1').contents().find('#d2').html() );"&gt;jQuery方法：爷调父DOM元素&lt;/button&gt;  
+
+    &lt;button onclick="alert( $('#c1').contents().find('#c2').contents().find('#d3').html() );"&gt;jQuery方法：爷调孙DOM元素&lt;/button&gt;  
+
+    &lt;div&gt;  
+        &lt;iframe src="d2.html" id="c1" name="c1" style="width:100%; height:300px;"&gt;&lt;/iframe&gt;  
+    &lt;/div&gt;  
+
+  &lt;/body&gt;  
+&lt;/html&gt; 
+</pre>
+                </p>d2.html页面（iframe页面，也就是父亲级别）：</p>
+                <pre class="brush: xml;">
+&lt;!DOCTYPE html&gt;  
+&lt;html&gt;  
+&lt;head&gt;  
+ &lt;title&gt;d2.html&lt;/title&gt;  
+ &lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;  
+ &lt;style&gt;
+   iframe{ margin-top: 20px; display: block;}
+   button{ border: none; padding: 0; background: 0 0; cursor: pointer; overflow: hidden; margin: 0 10px 10px 0; padding: 0 10px; height: 25px; line-height: 25px; color: #fff; background: #91dc3b;}
+   #d2{ margin-bottom: 10px; padding-top: 20px; height: 20px; line-height: 20px; color: #000; font-size: 14px; font-weight: bold;}
+ &lt;/style&gt;
+ &lt;script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript"&gt;  
+     function children(){  
+         alert("父亲 method...");  
+     }  
+ &lt;/script&gt;  
+&lt;/head&gt;  
+ 
+&lt;body style="background:#ddd;"&gt;  
+ &lt;p id="d2"&gt;我是iframe父亲&lt;/p&gt; 
+ &lt;button onclick="window.parent.father();"&gt;父调爷&lt;/button&gt;  
+ &lt;button onclick='window.frames["c2"].sunzi();'&gt;父调孙&lt;/button&gt;  
+
+ &lt;button onclick="alert( window.parent.document.getElementById('d1').innerHTML );"&gt;父调爷DOM元素&lt;/button&gt;  
+ &lt;button onclick="alert( window.frames['c2'].document.getElementById('d3').innerHTML );"&gt;父调孙DOM元素&lt;/button&gt;  
+
+ &lt;button onclick="alert( $(window.parent.document).find('#d1').html() );"&gt;jQuery方法：父调爷DOM元素&lt;/button&gt;  
+ &lt;button onclick="alert( $('#c2').contents().find('#d3').html() );"&gt;jQuery方法：父调孙DOM元素&lt;/button&gt; 
+
+ &lt;iframe src="d3.html" id="c2" name="c2" style="width:100%; height:150px;"&gt;&lt;/iframe&gt;  
+&lt;/body&gt; 
+&lt;html&gt; 
+</pre>
+                <p>d3.html页面（iframe页面中的iframe页面，也就是孙子级别）：</p>
+                <pre class="brush: xml;">
+&lt;!DOCTYPE html&gt;  
+&lt;html&gt;  
+&lt;head&gt;  
+ &lt;title&gt;d3.html&lt;/title&gt;  
+ &lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;  
+  &lt;style&gt;
+    iframe{ margin-top: 20px; display: block;}
+    button{ border: none; padding: 0; background: 0 0; cursor: pointer; overflow: hidden; margin: 0 10px 10px 0; padding: 0 10px; height: 25px; line-height: 25px; color: #fff; background: #cf33a0;}
+    #d3{ margin-bottom: 10px; padding-top: 20px; height: 20px; line-height: 20px; color: #000; font-size: 14px; font-weight: bold;}
+  &lt;/style&gt; 
+ &lt;script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"&gt;&lt;/script&gt; 
+ &lt;script type="text/javascript"&gt;  
+     function sunzi(){  
+         alert("孙子 method...");  
+     }  
+ &lt;/script&gt;  
+&lt;/head&gt;  
+ 
+&lt;body style="background:#bbb;"&gt;  
+ &lt;p id="d3"&gt;我是iframe孙子&lt;/p&gt;  
+ &lt;button onclick="window.parent.children();"&gt;孙调父&lt;/button&gt;  
+ &lt;button onclick="window.top.father();"&gt;孙调爷&lt;/button&gt;&lt;!-- 两种方式都可以 --&gt;  
+ &lt;button onclick="window.parent.parent.father();"&gt;孙调爷(方式二)&lt;/button&gt;  
+
+ &lt;button onclick="alert( window.top.document.getElementById('d1').innerHTML );"&gt;孙调爷DOM元素&lt;/button&gt;  
+ &lt;button onclick="alert( window.parent.document.getElementById('d2').innerHTML );"&gt;孙调父DOM元素&lt;/button&gt;  
+
+ &lt;button onclick="alert( $(window.top.document).find('#d1').html() );"&gt;jQuery方法：孙调爷DOM元素&lt;/button&gt;  
+ &lt;button onclick="alert( $(window.parent.document).find('#d2').html() );"&gt;jQuery方法：孙调父DOM元素&lt;/button&gt; 
+&lt;/body&gt;  
+&lt;/html&gt;
 </pre>
             </section>
             <br/>
-            <br/>
-            <h3><strong>二、直接上DEMO：</strong></h3>
+            <h3><strong>三、下载源码：</strong></h3>
             <section>
-                步骤如下：
-                <br/>
-                <strong>step1：</strong>文件夹结构
-                <br/>
-                <img src="http://www.yuanbo88.com/dist/images/domeimg/lazyload.gif" data-original="http://www.yuanbo88.com/dist/images/domeimg/article/2016/nodeWater/node_water_1.jpg" alt="nodejs给图片加水印">
-                <br/>
-                <strong>step2：</strong>JS代码
-                <br/>
-                <pre class="brush: js;">
-var images = require('images');
-var path = require('path');
-var watermarkImg = images('water_logo.png');
-var sourceImg = images('source.png');
-
-// 比如放置在右下角，先获取原图的尺寸和水印图片尺寸
-var sWidth = sourceImg.width();
-var sHeight = sourceImg.height();
-var wmWidth = watermarkImg.width();
-var wmHeight = watermarkImg.height();
-
-images(sourceImg)
-	// 设置绘制的坐标位置，右下角距离 40px
-	.draw(watermarkImg, sWidth - wmWidth - 40, sHeight - wmHeight - 40)
-	// 保存格式会自动识别
-	.save('saveimg.png');
-</pre>
-                <strong>step3：</strong>运行node app命令
-                <br/>
-                <img src="http://www.yuanbo88.com/dist/images/domeimg/lazyload.gif" data-original="http://www.yuanbo88.com/dist/images/domeimg/article/2016/nodeWater/node_water_2.jpg" alt="nodejs给图片加水印">
-                <br/>
-                <strong>step4：</strong>运行node命令后，文件夹结构如下图
-                <br/>
-                <img src="http://www.yuanbo88.com/dist/images/domeimg/lazyload.gif" data-original="http://www.yuanbo88.com/dist/images/domeimg/article/2016/nodeWater/node_water_3.jpg" alt="nodejs给图片加水印">
-                <br/>
-                <strong>step5：</strong>最终生成的加水印图片
-                <br/>
-                <img src="http://www.yuanbo88.com/dist/images/domeimg/lazyload.gif" data-original="http://www.yuanbo88.com/dist/images/domeimg/article/2016/nodeWater/saveimg.png" alt="nodejs给图片加水印">
-                <br/>
+                <a href="http://www.yuanbo88.com/other/download/iframe.zip">点击下载源码</a>
+            </section>
+            <br/>
+            <h3><strong>四、备注：</strong></h3>
+            <section>
+                <p>1、contentWindow: contentWindow属性，这是个只读属性，它虽然不是W3C标准的一部分，但是可以通过Dom对象的contentWindow属性来返回窗口对象，也就是window 对象。它兼容各个浏览器。</p>
+                <p>2、contentDocument: W3C的标准告诉我们，可以通过Dom对象的contentDocument属性来返回文档对象，取得子窗口的 document 对象。IE6，IE7都不支持，IE8开始支持。</p>
+                <p>3、在iframe下JS方法之间和html元素之间，JS成员变量之间是相互不影响的，它和动态包含和静态包含不同。这一点要切记，iframe只是在页面形式上看上去有着包含的关系。其实如果在父页面要调用子页面的方法和元素必须用window对象。</p>
+                <p></p>
             </section>
             <br/>
             <br/>
