@@ -210,198 +210,99 @@
         <!--public public_top.php end -->
     </header>
     <div class="article-wrap">
-        <h1>详解iframe中的各种页面操作</h1>
+        <h1>git常用命令总结</h1>
         <div class="article-content">
-            <p>
-                在我们的日常开发中，不管是WEB前端，还是后台程序，都不可避免的要接触到iframe。那么，我们可能会碰到以下问题：
-                <br/> 1、主页面如何操作iframe中的DOM元素操作和方法？
-                <br/> 2、iframe如何操作主页面中的DOM元素和方法？
-                <br/> 3、在主页面中，如何操作iframe中的嵌套iframe？
-                <br/> 4、其他情况等等......
-                <br/> 废话不多说，直接上DEMO。
-                <br/>
-                <br/>
-            </p>
-            <h3><strong>一、IFRAME DEMO:</strong></h3>
+            <h3><strong>一、前言：</strong></h3>
             <section>
-                <p>在做DEMO之前， 我们首先要注意一下：</p>
-                <p><strong>DEMO必须放在Web服务器上面才行。</strong>
-                    <br/>
-                </p>
-                <style>
-                iframe {
-                    margin-top: 20px;
-                    display: block;
-                }
-                
-                button {
-                    margin: 0 10px 10px 0;
-                    padding: 0 10px;
-                    height: 25px;
-                    line-height: 25px;
-                    color: #fff;
-                    background: #3498db;
-                }
-                
-                .d1-wrap {
-                    background: #eee;
-                }
-                
-                #d1 {
-                    margin-bottom: 10px;
-                    padding-top: 20px;
-                    height: 20px;
-                    line-height: 20px;
-                    color: #000;
-                    font-size: 14px;
-                    font-weight: bold;
-                }
-                </style>
-                <script type="text/javascript">
-                function father() {
-                    alert("爷爷 method...");
-                }
-                </script>
-                <div class="d1-wrap">
-                    <p id="d1">我是iframe爷爷
-                        <p/>
-                        <button onclick='window.frames["c1"].children();'>爷调父</button>
-                        <button onclick='window.frames["c1"].frames["c2"].sunzi();'>爷调孙</button>
-                        <button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('#d2').innerHTML );">爷调父DOM元素（兼容ie8以上）</button>
-                        <button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('iframe[name=c2]').contentDocument.querySelector('#d3').innerHTML );">爷调孙DOM元素（兼容ie8以上）</button>
-                        <button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('d2').innerHTML );">爷调父DOM元素</button>
-                        <button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('c2').contentWindow.document.getElementById('d3').innerHTML );">爷调孙DOM元素</button>
-                        <button onclick="alert( $('#c1').contents().find('#d2').html() );">jQuery方法：爷调父DOM元素</button>
-                        <button onclick="alert( $('#c1').contents().find('#c2').contents().find('#d3').html() );">jQuery方法：爷调孙DOM元素</button>
-                        <div>
-                            <iframe src="http://www.yuanbo88.com/other/d2.html" id="c1" name="c1" style="width:100%; height:300px;"></iframe>
-                        </div>
+                <p>在公司用了三年的SVN，加上2016年新建了自己的个人博客网站（也就是你现在看到的这个网站），随着网站的逐渐成型，在无版本控制的情况下，越发觉得有必要接触下git了。</p>
+                <div class="mb10">
+                    <p>git是什么？</p>
+                    <p>
+                        <small>Git是目前世界上最先进的分布式版本控制系统（没有之一）。</small>
+                    </p>
+                    <p>我上面提到的 svn 是<span class="fb-black">集中式的版本控制系统</span>，而 <span class="fb-black">git</span> 是<strong>分布式版本控制系统</strong>。</p>
+                    <p>
+                        <span class="fb-black">集中式和分布式版本控制系统有什么区别呢？</span>
+                        <br/>
+                        <span class="fb-black">集中式版本控制系统</span> 的版本库是集中存放在中央服务器的，而干活的时候，用的都是自己的电脑，所以每次干活的时候，要先从中央服务器取得最新的版本，然后才能开始干活，干完活了，再把自己的活推送给中央服务器。
+                        <br/> 用我的工作经验流程来说，比如我开发A网站的项目，首先就是SVN Checkout网站的项目代码（也就是从中央服务器下载项目代码），如果别人在我checkout后对项目代码有更新操作（也就是中央服务器上面的代码有变动），那么我在开发A网站的时候，先要SVN Update中央服务器上面的代码，确保我本地电脑上的代码和中央服务器上面的一致，然后我才开始工作，工作完了再SVN Commit我修改的代码（上传本地修改到中央服务器）。
+                        <br/> 集中式版本控制系统最大的毛病就是必须联网才能工作，这就使得在一些网速较慢的情况下，提交文件变成一件让人蛋疼的事情！
+                        <br/>
+                        <span class="fb-black">分布式版本控制系统</span> 根本没有“中央服务器”，每个人的电脑上都是一个完整的版本库，这样，你工作的时候，就不需要联网了，因为版本库就在你自己的电脑上。既然每个人电脑上都有一个完整的版本库，那多个人如何协作呢？比方说你在自己电脑上改了文件A，你的同事也在他的电脑上改了文件A，这时，你们俩之间只需把各自的修改推送给对方，就可以互相看到对方的修改了。
+                        <br/> 和集中式版本控制系统相比，分布式版本控制系统的安全性要高很多，因为每个人电脑里都有完整的版本库，某一个人的电脑坏掉了不要紧，随便从其他人那里复制一个就可以了。而集中式版本控制系统的中央服务器要是出了问题，所有人都没法干活了。
+                    </p>
                 </div>
-                <br/>
-                <p><strong>二、附上DEMO相关的三个页面代码：</strong></p>
-                <p>d1.html页面（主页面，也就是爷爷级别）：</p>
-                <pre class="brush: xml;">
-&lt;!DOCTYPE html&gt;  
-&lt;html&gt;  
-  &lt;head&gt;  
-    &lt;title&gt;d1.html&lt;/title&gt;  
-    &lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;  
-    &lt;script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
-    &lt;style&gt;
-      iframe{ margin-top: 20px; display: block;}
-      button{ margin: 0 10px 10px 0;}
-    &lt;/style&gt;
-  &lt;/head&gt;  
-  &lt;script type="text/javascript"&gt;  
-    function father(){  
-        alert("爷爷 method...");  
-    }  
-  &lt;/script&gt;  
-  &lt;body&gt;
-    &lt;p id="d1"&gt;我是iframe爷爷&lt;p/&gt;  
-    &lt;button onclick='window.frames["c1"].children();'&gt;爷调父&lt;/button&gt;  
-    &lt;button onclick='window.frames["c1"].frames["c2"].sunzi();'&gt;爷调孙&lt;/button&gt;  
-    &lt;button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('#d2').innerHTML );"&gt;爷调父DOM元素（兼容ie8以上）&lt;/button&gt;  
-    &lt;button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('iframe[name=c2]').contentDocument.querySelector('#d3').innerHTML );"&gt;爷调孙DOM元素（兼容ie8以上）&lt;/button&gt;  
-
-    &lt;button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('d2').innerHTML );"&gt;爷调父DOM元素&lt;/button&gt;  
-    &lt;button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('c2').contentWindow.document.getElementById('d3').innerHTML );"&gt;爷调孙DOM元素&lt;/button&gt; 
-
-    &lt;button onclick="alert( $('#c1').contents().find('#d2').html() );"&gt;jQuery方法：爷调父DOM元素&lt;/button&gt;  
-
-    &lt;button onclick="alert( $('#c1').contents().find('#c2').contents().find('#d3').html() );"&gt;jQuery方法：爷调孙DOM元素&lt;/button&gt;  
-
-    &lt;div&gt;  
-        &lt;iframe src="d2.html" id="c1" name="c1" style="width:100%; height:300px;"&gt;&lt;/iframe&gt;  
-    &lt;/div&gt;  
-
-  &lt;/body&gt;  
-&lt;/html&gt; 
-</pre>
-                </p>d2.html页面（iframe页面，也就是父亲级别）：</p>
-                <pre class="brush: xml;">
-&lt;!DOCTYPE html&gt;  
-&lt;html&gt;  
-&lt;head&gt;  
- &lt;title&gt;d2.html&lt;/title&gt;  
- &lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;  
- &lt;style&gt;
-   iframe{ margin-top: 20px; display: block;}
-   button{ border: none; padding: 0; background: 0 0; cursor: pointer; overflow: hidden; margin: 0 10px 10px 0; padding: 0 10px; height: 25px; line-height: 25px; color: #fff; background: #91dc3b;}
-   #d2{ margin-bottom: 10px; padding-top: 20px; height: 20px; line-height: 20px; color: #000; font-size: 14px; font-weight: bold;}
- &lt;/style&gt;
- &lt;script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
- &lt;script type="text/javascript"&gt;  
-     function children(){  
-         alert("父亲 method...");  
-     }  
- &lt;/script&gt;  
-&lt;/head&gt;  
- 
-&lt;body style="background:#ddd;"&gt;  
- &lt;p id="d2"&gt;我是iframe父亲&lt;/p&gt; 
- &lt;button onclick="window.parent.father();"&gt;父调爷&lt;/button&gt;  
- &lt;button onclick='window.frames["c2"].sunzi();'&gt;父调孙&lt;/button&gt;  
-
- &lt;button onclick="alert( window.parent.document.getElementById('d1').innerHTML );"&gt;父调爷DOM元素&lt;/button&gt;  
- &lt;button onclick="alert( window.frames['c2'].document.getElementById('d3').innerHTML );"&gt;父调孙DOM元素&lt;/button&gt;  
-
- &lt;button onclick="alert( $(window.parent.document).find('#d1').html() );"&gt;jQuery方法：父调爷DOM元素&lt;/button&gt;  
- &lt;button onclick="alert( $('#c2').contents().find('#d3').html() );"&gt;jQuery方法：父调孙DOM元素&lt;/button&gt; 
-
- &lt;iframe src="d3.html" id="c2" name="c2" style="width:100%; height:150px;"&gt;&lt;/iframe&gt;  
-&lt;/body&gt; 
-&lt;html&gt; 
-</pre>
-                <p>d3.html页面（iframe页面中的iframe页面，也就是孙子级别）：</p>
-                <pre class="brush: xml;">
-&lt;!DOCTYPE html&gt;  
-&lt;html&gt;  
-&lt;head&gt;  
- &lt;title&gt;d3.html&lt;/title&gt;  
- &lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;  
-  &lt;style&gt;
-    iframe{ margin-top: 20px; display: block;}
-    button{ border: none; padding: 0; background: 0 0; cursor: pointer; overflow: hidden; margin: 0 10px 10px 0; padding: 0 10px; height: 25px; line-height: 25px; color: #fff; background: #cf33a0;}
-    #d3{ margin-bottom: 10px; padding-top: 20px; height: 20px; line-height: 20px; color: #000; font-size: 14px; font-weight: bold;}
-  &lt;/style&gt; 
- &lt;script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"&gt;&lt;/script&gt; 
- &lt;script type="text/javascript"&gt;  
-     function sunzi(){  
-         alert("孙子 method...");  
-     }  
- &lt;/script&gt;  
-&lt;/head&gt;  
- 
-&lt;body style="background:#bbb;"&gt;  
- &lt;p id="d3"&gt;我是iframe孙子&lt;/p&gt;  
- &lt;button onclick="window.parent.children();"&gt;孙调父&lt;/button&gt;  
- &lt;button onclick="window.top.father();"&gt;孙调爷&lt;/button&gt;&lt;!-- 两种方式都可以 --&gt;  
- &lt;button onclick="window.parent.parent.father();"&gt;孙调爷(方式二)&lt;/button&gt;  
-
- &lt;button onclick="alert( window.top.document.getElementById('d1').innerHTML );"&gt;孙调爷DOM元素&lt;/button&gt;  
- &lt;button onclick="alert( window.parent.document.getElementById('d2').innerHTML );"&gt;孙调父DOM元素&lt;/button&gt;  
-
- &lt;button onclick="alert( $(window.top.document).find('#d1').html() );"&gt;jQuery方法：孙调爷DOM元素&lt;/button&gt;  
- &lt;button onclick="alert( $(window.parent.document).find('#d2').html() );"&gt;jQuery方法：孙调父DOM元素&lt;/button&gt; 
-&lt;/body&gt;  
-&lt;/html&gt;
-</pre>
+                <div>
+                    <p>msysgit是Windows版的Git，从<a href="https://git-for-windows.github.io" target="_blank">https://git-for-windows.github.io</a>下载（网速慢的同学请移步<a href="https://pan.baidu.com/s/1kU5OCOB#list/path=%2Fpub%2Fgit" target="_blank">国内镜像</a>），然后按默认选项安装即可。
+                        <br/> 安装完成后，在开始菜单里找到“Git”->“Git Bash”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！
+                        <br/> 安装完成后，还需要最后一步设置，在命令行输入：
+                    </p>
+                    <pre class="brush:js;">
+    $ git config --global user.name "Your Name"
+    $ git config --global user.email "email@example.com"
+  </pre>
+                    <p>因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。自此，你的Git安装大功告成！</p>
+                </div>
             </section>
             <br/>
-            <h3><strong>三、下载源码：</strong></h3>
+            <h3><strong>二、git命令总结：</strong></h3>
             <section>
-                <a href="http://www.yuanbo88.com/other/download/iframe.zip">点击下载源码</a>
+                <p>先说点别的......首先，你要在本地新建一个项目文件（当然最初你是用来做测试用的），比如我的测试项目文件就是：E:\webwork\yuanbo\AboutNodejs\gitstudy。然后在当前目录下调用Git Bash Here命令调出窗口（当前目录下鼠标右击可以看到该选项）。我们使用命令<strong><small> git init </small></strong>把当前这个目录变成Git可以管理的仓库。你会发现当前目录下多了一个<strong><small> .git </small></strong>的目录，这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件，不然改乱了，就把Git仓库给破坏了。</p>
+                <p>接下来，我们就集中总结下Git的常用命令吧：</p>
+                <pre class="brush:js;">
+git init              //初始化一个Git仓库
+git add &lt;file&gt;        //添加文件到Git仓库的第一步：添加命令
+git commit            //添加文件到Git仓库的第一步：完成命令。注：git commit -m "wrote a xxx file"，-m后面输入的是本次提交的说明，可以输入任意内容
+git status            //随时掌握工作区的状态
+git diff              //查看修改内容
+git log               //查看提交历史，以便确定要回退到哪个版本。注：git log --pretty=oneline可以简化输出信息
+git reflog            //查看命令历史，以便确定要回到未来的哪个版本。
+git reset --hard commit_id     //Git中，HEAD表示当前版本，上个版本就是HEAD^，上上个版本就是HEAD^^，HEAD~100表示往上100个版本。
+git checkout -- file  //场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时。
+git reset HEAD file   //场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步：
+                      //接场景2：第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
+                      //场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
+git rm file           //删除一个文件。（用该命令删除版本库里面的版本，无法还原该文件）
+git checkout -- file  //在删错了的情况下，用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+ssh-keygen -t rsa -C "youremail@example.com"     //创建SSH Key。你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可。
+git remote add origin git@github.com:bobo88/gitstudy.git  //关联一个远程库。请千万注意，把bobo88替换成你自己的GitHub账户名，gitstudy改成自己仓库名
+git push -u origin master     //关联一个远程库后，推送master分支的所有内容。
+git clone git@github.com:bobo88/gitstudy.git     //克隆一个本地库。将远程库克隆到本地，你运行左边的代码可以克隆我的GitHub远程库
+git branch            //查看分支
+git branch &lt;name&gt;     //创建分支。比如git branch dev，就是创建了一个dev分支
+git checkout &lt;name&gt;   //切换分支
+git checkout -b &lt;name&gt;     //创建+切换分支
+git merge &lt;name&gt;           //合并某分支到当前分支
+git branch -d &lt;name&gt;       //删除分支
+git branch -D &lt;name&gt;       //强行删除。（如果要丢弃一个没有被合并过的分支的情况下）
+git log --graph             //可以看到分支合并图
+git stash                   //可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作
+git stash pop               //回到工作现场
+git remote -v               //查看远程库信息
+git push origin branch-name      //从本地推送分支。如果推送失败，先用git pull抓取远程的新提交；
+git checkout -b branch-name origin/branch-name   //在本地创建和远程分支对应的分支，本地和远程分支的名称最好一致；
+git branch --set-upstream branch-name origin/branch-name    //建立本地分支和远程分支的关联
+git pull                    //从远程抓取分支。如果有冲突，要先处理冲突。
+git tag &lt;name&gt;              //新建一个标签，默认为HEAD，也可以指定一个commit id；
+git tag -a &lt;tagname&gt; -m "blablabla..."    //可以指定标签信息
+git tag -s &lt;tagname&gt; -m "blablabla..."    //可以用PGP签名标签
+git tag                     //查看所有标签
+git push origin &lt;tagname&gt;   //可以推送一个本地标签
+git push origin --tags      //可以推送全部未推送过的本地标签
+git tag -d &lt;tagname&gt;        //可以删除一个本地标签
+git push origin :refs/tags/&lt;tagname&gt;      //可以删除一个远程标签
+.gitignore                  //忽略某些文件时，需要编写.gitignore。.gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理！
+git add -f file             //强制添加文件file到Git
+git check-ignore -v file    //检查.gitignore是否忽略了file文件
+git config --global alias.st status //配置别名:左边的命令是告诉Git，st就表示status。对应的配置文件在.git/config(每个仓库)或.gitconfig(当前用户)文件中
+
+</pre>
             </section>
             <br/>
-            <h3><strong>四、备注：</strong></h3>
+            <h3><strong>三、后话：</strong></h3>
             <section>
-                <p>1、contentWindow: contentWindow属性，这是个只读属性，它虽然不是W3C标准的一部分，但是可以通过Dom对象的contentWindow属性来返回窗口对象，也就是window 对象。它兼容各个浏览器。</p>
-                <p>2、contentDocument: W3C的标准告诉我们，可以通过Dom对象的contentDocument属性来返回文档对象，取得子窗口的 document 对象。IE6，IE7都不支持，IE8开始支持。</p>
-                <p>3、在iframe下JS方法之间和html元素之间，JS成员变量之间是相互不影响的，它和动态包含和静态包含不同。这一点要切记，iframe只是在页面形式上看上去有着包含的关系。其实如果在父页面要调用子页面的方法和元素必须用window对象。</p>
-                <p></p>
+                <p><small>备注：本文总结主要参考<span class="fb-black"> 廖雪峰 </span>老师的<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank"><span class="fb-black"> Git教程 </span></a>系列，有兴趣的同学可以移步该网站看看。</small>本文将常用git命令汇总在一起，方便查询使用，赶紧自己动手操作一下吧！</p>
             </section>
-            <br/>
             <br/>
         </div>
     </div>

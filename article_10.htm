@@ -210,198 +210,102 @@
         <!--public public_top.php end -->
     </header>
     <div class="article-wrap">
-        <h1>详解iframe中的各种页面操作</h1>
+        <h1>说说javascript中的 “ && ” 和 “ || ” </h1>
         <div class="article-content">
             <p>
-                在我们的日常开发中，不管是WEB前端，还是后台程序，都不可避免的要接触到iframe。那么，我们可能会碰到以下问题：
-                <br/> 1、主页面如何操作iframe中的DOM元素操作和方法？
-                <br/> 2、iframe如何操作主页面中的DOM元素和方法？
-                <br/> 3、在主页面中，如何操作iframe中的嵌套iframe？
-                <br/> 4、其他情况等等......
-                <br/> 废话不多说，直接上DEMO。
-                <br/>
-                <br/>
+                有时候，我们会在jQuery框架或者其他js插件中发现里面有很多 “ && ” 和 “ || ”，那么这两个标识到底是什么含义？怎么使用？我觉得还是有必要稍微深究一下。
             </p>
-            <h3><strong>一、IFRAME DEMO:</strong></h3>
+            <h3><strong>一、原理:</strong></h3>
             <section>
-                <p>在做DEMO之前， 我们首先要注意一下：</p>
-                <p><strong>DEMO必须放在Web服务器上面才行。</strong>
+                <p class="fb-black">
+                    && 操作符特点：逻辑运算表达式中只要一个是false就取false的值，都是true取后面，都是false取前面。
+                    <br/> || 操作符特点：逻辑运算表达式中只要一个是true就取true的值，都是true取前面，都是false取后面。
+                </p>
+                <p>
+                    在js逻辑运算中，我们知道 <strong>0、""、null、false、undefined、NaN</strong> 这五种数据类型是会被判断为false的。那么，我们在进行js的逻辑运算过程中，就可以根据上面的原理以及这五种数据类型来进行相应的判断处理。直接上DEMO...
+                </p>
+            </section>
+            <br/>
+            <h3><strong>二、原始DEMO：</strong></h3>
+            <section>
+                <p>
+                    先亮出问题！！！
+                    <br/> 如果我们要根据学生的成绩来判断等级，比如：90分表示A，80分表示B，60分表示C，其他表示D。
+                    <br/> 那么我们可以这么做：
                     <br/>
                 </p>
-                <style>
-                iframe {
-                    margin-top: 20px;
-                    display: block;
-                }
-                
-                button {
-                    margin: 0 10px 10px 0;
-                    padding: 0 10px;
-                    height: 25px;
-                    line-height: 25px;
-                    color: #fff;
-                    background: #3498db;
-                }
-                
-                .d1-wrap {
-                    background: #eee;
-                }
-                
-                #d1 {
-                    margin-bottom: 10px;
-                    padding-top: 20px;
-                    height: 20px;
-                    line-height: 20px;
-                    color: #000;
-                    font-size: 14px;
-                    font-weight: bold;
-                }
-                </style>
-                <script type="text/javascript">
-                function father() {
-                    alert("爷爷 method...");
-                }
-                </script>
-                <div class="d1-wrap">
-                    <p id="d1">我是iframe爷爷
-                        <p/>
-                        <button onclick='window.frames["c1"].children();'>爷调父</button>
-                        <button onclick='window.frames["c1"].frames["c2"].sunzi();'>爷调孙</button>
-                        <button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('#d2').innerHTML );">爷调父DOM元素（兼容ie8以上）</button>
-                        <button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('iframe[name=c2]').contentDocument.querySelector('#d3').innerHTML );">爷调孙DOM元素（兼容ie8以上）</button>
-                        <button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('d2').innerHTML );">爷调父DOM元素</button>
-                        <button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('c2').contentWindow.document.getElementById('d3').innerHTML );">爷调孙DOM元素</button>
-                        <button onclick="alert( $('#c1').contents().find('#d2').html() );">jQuery方法：爷调父DOM元素</button>
-                        <button onclick="alert( $('#c1').contents().find('#c2').contents().find('#d3').html() );">jQuery方法：爷调孙DOM元素</button>
-                        <div>
-                            <iframe src="http://www.yuanbo88.com/other/d2.html" id="c1" name="c1" style="width:100%; height:300px;"></iframe>
-                        </div>
-                </div>
+                JS代码：
+                <pre class="brush: js;">
+var score = 90;
+var grade = '';
+if(score === 90){
+  grade = "A";
+}else if(score === 80){
+  grade = "B";
+}else if(score === 60){
+  grade = "C";
+}else{
+  grade = "D";
+}
+console.log("当前学生等级为：" + grade); // 当前学生等级为：A
+</pre> 或者这样：
+                <pre class="brush: js;">
+var score = 90;
+var grade = '';
+switch(score){
+  case 90:
+    grade = "A";
+    break;
+  case 80:
+    grade = "B";
+    break;
+  case 60:
+    grade = "C";
+    break;
+  default:
+    grade = "D";
+    break;
+};
+console.log("当前学生等级为：" + grade); // 当前学生等级为：A
+</pre>
+            </section>
+            <br/>
+            <h3><strong>三、优化DEMO：</strong></h3>
+            <section>
+                <p>
+                    其实，如果我们用 “ && ” 和 “ || ” 的话，大可不必如上面那么麻烦。
+                </p>
+                <pre class="brush: js;">
+var score = 90;
+var grade = (score===90 && 'A') || (score===80 && 'B') || (score===60 && 'C') || 'D';
+console.log("当前学生等级为：" + grade); // 当前学生等级为：A
+</pre>
+                <p>
+                    上面代码可以这么理解：
+                    <br/> 如果score的值等于90，那么score===90的逻辑表达式就成立（也即是true），就会执行到后面 'A' 的赋值操作，同时后面的“||” 逻辑运算也可以忽略（因为“||”运算符的特点是前面一旦为true，后面就没有执行的必要了）。
+                    <br/> 如果score的值不等于90，那么score===90的逻辑表达式就不成立（也即是false），根据“&&”操作符的特点，我们知道“(score===90 && 'A')”这段代码就不会执行到后面 'A' 的赋值操作，同时由于“(score===90 && 'A')”这段代码整体是false，那么根据“||”的特点，整个逻辑表达式会继续往后执行。
+                    <br/> 以此类推，如果前面所有的逻辑表达式都不成立，那么根据“||”的特点（全部为false就取最后面的），最后的grade赋值就会是“D”。
+                </p>
+                <p>我们还可以用<span class="fb-black">JSON</span>形式来处理上面的逻辑运算：</p>
+                <pre class="brush: js;">
+var score = 90;
+var grade = {90:"A", 80:"B", 60:"C"}[score] || 'D';
+console.log("当前学生等级为：" + grade); // 当前学生等级为：A
+</pre>
+                <p>这里利用了JSON对象的属性读取，当“JSON对象.属性值”存在的时候（为true），就会取得对应属性的key值（A、B或者C）。当score属性值不存在与JSON对象中的时候，就会执行“||”后面的内容，也就是把grade赋值为“D”。</p>
                 <br/>
-                <p><strong>二、附上DEMO相关的三个页面代码：</strong></p>
-                <p>d1.html页面（主页面，也就是爷爷级别）：</p>
-                <pre class="brush: xml;">
-&lt;!DOCTYPE html&gt;  
-&lt;html&gt;  
-  &lt;head&gt;  
-    &lt;title&gt;d1.html&lt;/title&gt;  
-    &lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;  
-    &lt;script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
-    &lt;style&gt;
-      iframe{ margin-top: 20px; display: block;}
-      button{ margin: 0 10px 10px 0;}
-    &lt;/style&gt;
-  &lt;/head&gt;  
-  &lt;script type="text/javascript"&gt;  
-    function father(){  
-        alert("爷爷 method...");  
-    }  
-  &lt;/script&gt;  
-  &lt;body&gt;
-    &lt;p id="d1"&gt;我是iframe爷爷&lt;p/&gt;  
-    &lt;button onclick='window.frames["c1"].children();'&gt;爷调父&lt;/button&gt;  
-    &lt;button onclick='window.frames["c1"].frames["c2"].sunzi();'&gt;爷调孙&lt;/button&gt;  
-    &lt;button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('#d2').innerHTML );"&gt;爷调父DOM元素（兼容ie8以上）&lt;/button&gt;  
-    &lt;button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('iframe[name=c2]').contentDocument.querySelector('#d3').innerHTML );"&gt;爷调孙DOM元素（兼容ie8以上）&lt;/button&gt;  
-
-    &lt;button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('d2').innerHTML );"&gt;爷调父DOM元素&lt;/button&gt;  
-    &lt;button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('c2').contentWindow.document.getElementById('d3').innerHTML );"&gt;爷调孙DOM元素&lt;/button&gt; 
-
-    &lt;button onclick="alert( $('#c1').contents().find('#d2').html() );"&gt;jQuery方法：爷调父DOM元素&lt;/button&gt;  
-
-    &lt;button onclick="alert( $('#c1').contents().find('#c2').contents().find('#d3').html() );"&gt;jQuery方法：爷调孙DOM元素&lt;/button&gt;  
-
-    &lt;div&gt;  
-        &lt;iframe src="d2.html" id="c1" name="c1" style="width:100%; height:300px;"&gt;&lt;/iframe&gt;  
-    &lt;/div&gt;  
-
-  &lt;/body&gt;  
-&lt;/html&gt; 
-</pre>
-                </p>d2.html页面（iframe页面，也就是父亲级别）：</p>
-                <pre class="brush: xml;">
-&lt;!DOCTYPE html&gt;  
-&lt;html&gt;  
-&lt;head&gt;  
- &lt;title&gt;d2.html&lt;/title&gt;  
- &lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;  
- &lt;style&gt;
-   iframe{ margin-top: 20px; display: block;}
-   button{ border: none; padding: 0; background: 0 0; cursor: pointer; overflow: hidden; margin: 0 10px 10px 0; padding: 0 10px; height: 25px; line-height: 25px; color: #fff; background: #91dc3b;}
-   #d2{ margin-bottom: 10px; padding-top: 20px; height: 20px; line-height: 20px; color: #000; font-size: 14px; font-weight: bold;}
- &lt;/style&gt;
- &lt;script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
- &lt;script type="text/javascript"&gt;  
-     function children(){  
-         alert("父亲 method...");  
-     }  
- &lt;/script&gt;  
-&lt;/head&gt;  
- 
-&lt;body style="background:#ddd;"&gt;  
- &lt;p id="d2"&gt;我是iframe父亲&lt;/p&gt; 
- &lt;button onclick="window.parent.father();"&gt;父调爷&lt;/button&gt;  
- &lt;button onclick='window.frames["c2"].sunzi();'&gt;父调孙&lt;/button&gt;  
-
- &lt;button onclick="alert( window.parent.document.getElementById('d1').innerHTML );"&gt;父调爷DOM元素&lt;/button&gt;  
- &lt;button onclick="alert( window.frames['c2'].document.getElementById('d3').innerHTML );"&gt;父调孙DOM元素&lt;/button&gt;  
-
- &lt;button onclick="alert( $(window.parent.document).find('#d1').html() );"&gt;jQuery方法：父调爷DOM元素&lt;/button&gt;  
- &lt;button onclick="alert( $('#c2').contents().find('#d3').html() );"&gt;jQuery方法：父调孙DOM元素&lt;/button&gt; 
-
- &lt;iframe src="d3.html" id="c2" name="c2" style="width:100%; height:150px;"&gt;&lt;/iframe&gt;  
-&lt;/body&gt; 
-&lt;html&gt; 
-</pre>
-                <p>d3.html页面（iframe页面中的iframe页面，也就是孙子级别）：</p>
-                <pre class="brush: xml;">
-&lt;!DOCTYPE html&gt;  
-&lt;html&gt;  
-&lt;head&gt;  
- &lt;title&gt;d3.html&lt;/title&gt;  
- &lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;  
-  &lt;style&gt;
-    iframe{ margin-top: 20px; display: block;}
-    button{ border: none; padding: 0; background: 0 0; cursor: pointer; overflow: hidden; margin: 0 10px 10px 0; padding: 0 10px; height: 25px; line-height: 25px; color: #fff; background: #cf33a0;}
-    #d3{ margin-bottom: 10px; padding-top: 20px; height: 20px; line-height: 20px; color: #000; font-size: 14px; font-weight: bold;}
-  &lt;/style&gt; 
- &lt;script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"&gt;&lt;/script&gt; 
- &lt;script type="text/javascript"&gt;  
-     function sunzi(){  
-         alert("孙子 method...");  
-     }  
- &lt;/script&gt;  
-&lt;/head&gt;  
- 
-&lt;body style="background:#bbb;"&gt;  
- &lt;p id="d3"&gt;我是iframe孙子&lt;/p&gt;  
- &lt;button onclick="window.parent.children();"&gt;孙调父&lt;/button&gt;  
- &lt;button onclick="window.top.father();"&gt;孙调爷&lt;/button&gt;&lt;!-- 两种方式都可以 --&gt;  
- &lt;button onclick="window.parent.parent.father();"&gt;孙调爷(方式二)&lt;/button&gt;  
-
- &lt;button onclick="alert( window.top.document.getElementById('d1').innerHTML );"&gt;孙调爷DOM元素&lt;/button&gt;  
- &lt;button onclick="alert( window.parent.document.getElementById('d2').innerHTML );"&gt;孙调父DOM元素&lt;/button&gt;  
-
- &lt;button onclick="alert( $(window.top.document).find('#d1').html() );"&gt;jQuery方法：孙调爷DOM元素&lt;/button&gt;  
- &lt;button onclick="alert( $(window.parent.document).find('#d2').html() );"&gt;jQuery方法：孙调父DOM元素&lt;/button&gt; 
-&lt;/body&gt;  
-&lt;/html&gt;
+                <p>
+                    当然，我们会发现上面的数值比较并没有太大的实用性，比如当学生的成绩在85分的时候，等级也会变成“D”，这明显是不合适的！！！
+                </p>
+                <p class="fb-black">
+                    所以我们可以把上面的代码再优化下，把数值的 “相等比较” 改成 “范围区间比较” 。
+                </p>
+                <pre class="brush: js;">
+var score = 85;
+var grade = (score>=90 && 'A') || (score>=80 && 'B') || (score>=60 && 'C') || 'D';
+console.log("当前学生等级为：" + grade); // 当前学生等级为：B
 </pre>
             </section>
-            <br/>
-            <h3><strong>三、下载源码：</strong></h3>
-            <section>
-                <a href="http://www.yuanbo88.com/other/download/iframe.zip">点击下载源码</a>
-            </section>
-            <br/>
-            <h3><strong>四、备注：</strong></h3>
-            <section>
-                <p>1、contentWindow: contentWindow属性，这是个只读属性，它虽然不是W3C标准的一部分，但是可以通过Dom对象的contentWindow属性来返回窗口对象，也就是window 对象。它兼容各个浏览器。</p>
-                <p>2、contentDocument: W3C的标准告诉我们，可以通过Dom对象的contentDocument属性来返回文档对象，取得子窗口的 document 对象。IE6，IE7都不支持，IE8开始支持。</p>
-                <p>3、在iframe下JS方法之间和html元素之间，JS成员变量之间是相互不影响的，它和动态包含和静态包含不同。这一点要切记，iframe只是在页面形式上看上去有着包含的关系。其实如果在父页面要调用子页面的方法和元素必须用window对象。</p>
-                <p></p>
-            </section>
-            <br/>
             <br/>
         </div>
     </div>

@@ -210,198 +210,132 @@
         <!--public public_top.php end -->
     </header>
     <div class="article-wrap">
-        <h1>详解iframe中的各种页面操作</h1>
+        <h1>你真的懂javascript中的 “this” 吗？</h1>
         <div class="article-content">
-            <p>
-                在我们的日常开发中，不管是WEB前端，还是后台程序，都不可避免的要接触到iframe。那么，我们可能会碰到以下问题：
-                <br/> 1、主页面如何操作iframe中的DOM元素操作和方法？
-                <br/> 2、iframe如何操作主页面中的DOM元素和方法？
-                <br/> 3、在主页面中，如何操作iframe中的嵌套iframe？
-                <br/> 4、其他情况等等......
-                <br/> 废话不多说，直接上DEMO。
-                <br/>
-                <br/>
-            </p>
-            <h3><strong>一、IFRAME DEMO:</strong></h3>
+            <h3><strong>一、前言：</strong></h3>
             <section>
-                <p>在做DEMO之前， 我们首先要注意一下：</p>
-                <p><strong>DEMO必须放在Web服务器上面才行。</strong>
+                <p>我们知道 “this” 是javascript语言的一个关键字，在编写javascript代码的时候，经常会见到或者用到它。
+                    <br/> 但是，有一部分开发朋友，对 “this” 一知半解，下面我们就一起来探讨学习下javascript中 “this” 的具体含义吧！</p>
+            </section>
+            <br/>
+            <h3><strong>二、This总结：</strong></h3>
+            <section>
+                <p>
+                    <span class="fb-black">This指针作用域：</span>
+                    <br/> 1）、在全局执行环境中使用this，表示Global对象，在浏览器中就是window对象。
+                    <br/> 2）、当在函数执行环境中使用this时，情况就有些复杂了。如果函数没有明显的作为非window对象的属性，而只是定义了函数，不管这个函数是不是定义在另一个函数中，这个函数中的this仍然表示window对象。如果函数显示地作为一个非window对象的属性，那么函数中的this就代表这个对象。
+                    <br/> 3）、当通过new运算符来调用函数时，函数被当做一个构造函数，this指向构造函数创建出来的对象。
                     <br/>
                 </p>
-                <style>
-                iframe {
-                    margin-top: 20px;
-                    display: block;
-                }
-                
-                button {
-                    margin: 0 10px 10px 0;
-                    padding: 0 10px;
-                    height: 25px;
-                    line-height: 25px;
-                    color: #fff;
-                    background: #3498db;
-                }
-                
-                .d1-wrap {
-                    background: #eee;
-                }
-                
-                #d1 {
-                    margin-bottom: 10px;
-                    padding-top: 20px;
-                    height: 20px;
-                    line-height: 20px;
-                    color: #000;
-                    font-size: 14px;
-                    font-weight: bold;
-                }
-                </style>
-                <script type="text/javascript">
-                function father() {
-                    alert("爷爷 method...");
-                }
-                </script>
-                <div class="d1-wrap">
-                    <p id="d1">我是iframe爷爷
-                        <p/>
-                        <button onclick='window.frames["c1"].children();'>爷调父</button>
-                        <button onclick='window.frames["c1"].frames["c2"].sunzi();'>爷调孙</button>
-                        <button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('#d2').innerHTML );">爷调父DOM元素（兼容ie8以上）</button>
-                        <button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('iframe[name=c2]').contentDocument.querySelector('#d3').innerHTML );">爷调孙DOM元素（兼容ie8以上）</button>
-                        <button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('d2').innerHTML );">爷调父DOM元素</button>
-                        <button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('c2').contentWindow.document.getElementById('d3').innerHTML );">爷调孙DOM元素</button>
-                        <button onclick="alert( $('#c1').contents().find('#d2').html() );">jQuery方法：爷调父DOM元素</button>
-                        <button onclick="alert( $('#c1').contents().find('#c2').contents().find('#d3').html() );">jQuery方法：爷调孙DOM元素</button>
-                        <div>
-                            <iframe src="http://www.yuanbo88.com/other/d2.html" id="c1" name="c1" style="width:100%; height:300px;"></iframe>
-                        </div>
-                </div>
-                <br/>
-                <p><strong>二、附上DEMO相关的三个页面代码：</strong></p>
-                <p>d1.html页面（主页面，也就是爷爷级别）：</p>
-                <pre class="brush: xml;">
-&lt;!DOCTYPE html&gt;  
-&lt;html&gt;  
-  &lt;head&gt;  
-    &lt;title&gt;d1.html&lt;/title&gt;  
-    &lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;  
-    &lt;script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
-    &lt;style&gt;
-      iframe{ margin-top: 20px; display: block;}
-      button{ margin: 0 10px 10px 0;}
-    &lt;/style&gt;
-  &lt;/head&gt;  
-  &lt;script type="text/javascript"&gt;  
-    function father(){  
-        alert("爷爷 method...");  
-    }  
-  &lt;/script&gt;  
-  &lt;body&gt;
-    &lt;p id="d1"&gt;我是iframe爷爷&lt;p/&gt;  
-    &lt;button onclick='window.frames["c1"].children();'&gt;爷调父&lt;/button&gt;  
-    &lt;button onclick='window.frames["c1"].frames["c2"].sunzi();'&gt;爷调孙&lt;/button&gt;  
-    &lt;button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('#d2').innerHTML );"&gt;爷调父DOM元素（兼容ie8以上）&lt;/button&gt;  
-    &lt;button onclick="alert( document.querySelector('iframe[name=c1]').contentDocument.querySelector('iframe[name=c2]').contentDocument.querySelector('#d3').innerHTML );"&gt;爷调孙DOM元素（兼容ie8以上）&lt;/button&gt;  
-
-    &lt;button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('d2').innerHTML );"&gt;爷调父DOM元素&lt;/button&gt;  
-    &lt;button onclick="alert( document.getElementById('c1').contentWindow.document.getElementById('c2').contentWindow.document.getElementById('d3').innerHTML );"&gt;爷调孙DOM元素&lt;/button&gt; 
-
-    &lt;button onclick="alert( $('#c1').contents().find('#d2').html() );"&gt;jQuery方法：爷调父DOM元素&lt;/button&gt;  
-
-    &lt;button onclick="alert( $('#c1').contents().find('#c2').contents().find('#d3').html() );"&gt;jQuery方法：爷调孙DOM元素&lt;/button&gt;  
-
-    &lt;div&gt;  
-        &lt;iframe src="d2.html" id="c1" name="c1" style="width:100%; height:300px;"&gt;&lt;/iframe&gt;  
-    &lt;/div&gt;  
-
-  &lt;/body&gt;  
-&lt;/html&gt; 
-</pre>
-                </p>d2.html页面（iframe页面，也就是父亲级别）：</p>
-                <pre class="brush: xml;">
-&lt;!DOCTYPE html&gt;  
-&lt;html&gt;  
-&lt;head&gt;  
- &lt;title&gt;d2.html&lt;/title&gt;  
- &lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;  
- &lt;style&gt;
-   iframe{ margin-top: 20px; display: block;}
-   button{ border: none; padding: 0; background: 0 0; cursor: pointer; overflow: hidden; margin: 0 10px 10px 0; padding: 0 10px; height: 25px; line-height: 25px; color: #fff; background: #91dc3b;}
-   #d2{ margin-bottom: 10px; padding-top: 20px; height: 20px; line-height: 20px; color: #000; font-size: 14px; font-weight: bold;}
- &lt;/style&gt;
- &lt;script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
- &lt;script type="text/javascript"&gt;  
-     function children(){  
-         alert("父亲 method...");  
-     }  
- &lt;/script&gt;  
-&lt;/head&gt;  
- 
-&lt;body style="background:#ddd;"&gt;  
- &lt;p id="d2"&gt;我是iframe父亲&lt;/p&gt; 
- &lt;button onclick="window.parent.father();"&gt;父调爷&lt;/button&gt;  
- &lt;button onclick='window.frames["c2"].sunzi();'&gt;父调孙&lt;/button&gt;  
-
- &lt;button onclick="alert( window.parent.document.getElementById('d1').innerHTML );"&gt;父调爷DOM元素&lt;/button&gt;  
- &lt;button onclick="alert( window.frames['c2'].document.getElementById('d3').innerHTML );"&gt;父调孙DOM元素&lt;/button&gt;  
-
- &lt;button onclick="alert( $(window.parent.document).find('#d1').html() );"&gt;jQuery方法：父调爷DOM元素&lt;/button&gt;  
- &lt;button onclick="alert( $('#c2').contents().find('#d3').html() );"&gt;jQuery方法：父调孙DOM元素&lt;/button&gt; 
-
- &lt;iframe src="d3.html" id="c2" name="c2" style="width:100%; height:150px;"&gt;&lt;/iframe&gt;  
-&lt;/body&gt; 
-&lt;html&gt; 
-</pre>
-                <p>d3.html页面（iframe页面中的iframe页面，也就是孙子级别）：</p>
-                <pre class="brush: xml;">
-&lt;!DOCTYPE html&gt;  
-&lt;html&gt;  
-&lt;head&gt;  
- &lt;title&gt;d3.html&lt;/title&gt;  
- &lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;  
-  &lt;style&gt;
-    iframe{ margin-top: 20px; display: block;}
-    button{ border: none; padding: 0; background: 0 0; cursor: pointer; overflow: hidden; margin: 0 10px 10px 0; padding: 0 10px; height: 25px; line-height: 25px; color: #fff; background: #cf33a0;}
-    #d3{ margin-bottom: 10px; padding-top: 20px; height: 20px; line-height: 20px; color: #000; font-size: 14px; font-weight: bold;}
-  &lt;/style&gt; 
- &lt;script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"&gt;&lt;/script&gt; 
- &lt;script type="text/javascript"&gt;  
-     function sunzi(){  
-         alert("孙子 method...");  
-     }  
- &lt;/script&gt;  
-&lt;/head&gt;  
- 
-&lt;body style="background:#bbb;"&gt;  
- &lt;p id="d3"&gt;我是iframe孙子&lt;/p&gt;  
- &lt;button onclick="window.parent.children();"&gt;孙调父&lt;/button&gt;  
- &lt;button onclick="window.top.father();"&gt;孙调爷&lt;/button&gt;&lt;!-- 两种方式都可以 --&gt;  
- &lt;button onclick="window.parent.parent.father();"&gt;孙调爷(方式二)&lt;/button&gt;  
-
- &lt;button onclick="alert( window.top.document.getElementById('d1').innerHTML );"&gt;孙调爷DOM元素&lt;/button&gt;  
- &lt;button onclick="alert( window.parent.document.getElementById('d2').innerHTML );"&gt;孙调父DOM元素&lt;/button&gt;  
-
- &lt;button onclick="alert( $(window.top.document).find('#d1').html() );"&gt;jQuery方法：孙调爷DOM元素&lt;/button&gt;  
- &lt;button onclick="alert( $(window.parent.document).find('#d2').html() );"&gt;jQuery方法：孙调父DOM元素&lt;/button&gt; 
-&lt;/body&gt;  
-&lt;/html&gt;
-</pre>
             </section>
             <br/>
-            <h3><strong>三、下载源码：</strong></h3>
+            <h3><strong>三、各种情形下的DEMO：</strong><small>（当然，你也可以按照自己的想法来做各种测试...）</small></h3>
             <section>
-                <a href="http://www.yuanbo88.com/other/download/iframe.zip">点击下载源码</a>
+                <p>
+                    <span class="fb-black">#在全局执行环境中使用this，表示Global对象，在浏览器中就是window对象</span>
+                </p>
+                <pre class="brush:js;">
+console.log(this); //Window
+console.log(typeof this); //object
+console.log(this === window); //true
+</pre>
+                <p>
+                    <span class="fb-black">##在函数执行环境中使用this时,如果函数没有明显的作为非window对象的属性，而只是定义了函数，不管这个函数是不是定义在另一个函数中，这个函数中的this仍然表示window对象</span>
+                </p>
+                <pre class="brush:js;">
+function A(){
+  //在A函数中定义一个B函数
+  function B(){
+    console.log(this); //Window
+    console.log(typeof this); //object
+    console.log(this === window); //true
+  }
+  //在A函数内部调用B函数
+  B();
+}
+//调用A函数
+A();
+</pre>
+                <p>
+                    <span class="fb-black">###在函数执行环境中使用this时,如果函数显式地作为一个非window对象的属性，那么函数中的this就代表这个对象</span>
+                </p>
+                <pre class="brush:js;">
+//定义一个对象obj，并为她添加属性name，添加方法objFun
+var obj = {
+  name: '敲代码的怪蜀黍',
+  objFun: function(){
+    console.log(this); // Object {name: "敲代码的怪蜀黍"}
+    console.log(typeof this); //object
+    console.log(this === window); //false
+    console.log(this.name); //敲代码的怪蜀黍
+  }
+};
+
+//调用obj对象的方法
+obj.objFun(); //this 绑定到当前对象，也就是obj对象
+</pre>
+                <p>把上面的代码稍微改一下：</p>
+                <pre class="brush:js;">
+//定义一个对象obj，并为她添加属性name，添加方法objFun
+var obj = {
+  name: '敲代码的怪蜀黍',
+  objFun: function(){
+    console.log(this); //window
+    console.log(typeof this); //object
+    console.log(this === window); //true
+    console.log('为了看效果而.'+this.name+'.已'); //为了看效果而..已
+  }
+};
+
+var test = obj.objFun;
+test();
+</pre>
+                <p>这时候，你会神奇的发现，上面例子中的 this 又等于 window 了，到底是什么原因导致的呢？下面我们来分析分析：</p>
+                <p>
+                    <span class="fb-black">我们首先要知道 “函数内部this的值不是静态的”，每次你调用一个函数它总是重新求值（但这一过程发生在函数代码实际执行之前），函数内部的this值实际上是由函数被调用的父作用域提供，更重要的是，她依赖实际函数的语法。<br/>
+  当函数被调用时，我们看紧邻括号“()”的左边。如果在括号的左侧存在一个引用，传递给调用函数的“this”值是引用所属于的那个对象，否则this的值就是全局对象。</span>
+                </p>
+                <p>
+                    我们再接着看看上面的例子，“var test = obj.objFun;” 这里表示没有调用函数，不用管。“test();”这里调用了函数，我们发现在括号“()”的左侧是一个变量test，test不是一个对象的引用，所以this的值就是全局对象。接下来，为了更深刻的理解上面的原理，我们来个更为复杂点的例子：
+                </p>
+                <pre class="brush:js;">
+  var name = 'window在手，天下我有！';
+  var obj = {
+    name: '敲代码的怪蜀黍',
+    objBar: {
+      name: 'BOBO',
+      barFun: function(){
+        console.log(this.name);
+      }
+    }
+  };
+
+  //()左侧是barFun引用，它指向objBar对象，所以打印出 “BOBO”
+  var test1 = obj.objBar.barFun(); //BOBO
+
+  //()左侧是test2，test2它并不是某个对象的引用，所以打印出 “window在手，天下我有！”
+  var test2 = obj.objBar.barFun;
+  test2(); //window在手，天下我有！
+
+  //下面这个看起来复杂，其实抓住一点就行了：()左侧是testBar，testBar并不属于某个对象的引用，当然打印出来的还是 “window在手，天下我有！”
+  var test3 = obj.objBar;
+  var testBar = test3.barFun;
+  testBar(); //window在手，天下我有！
+</pre>
+                <p>
+                    <span class="fb-black">####当通过new运算符来调用函数时，函数被当做一个构造函数，this指向构造函数创建出来的对象</span>
+                </p>
+                <pre class="brush:js;">
+var name = 'window在手，天下我有！';
+function A(){
+  console.log(this.name);
+}
+
+A(); //window在手，天下我有！
+
+var objA = new A(); //undefined （因为objA并没有name属性）
+</pre>
             </section>
-            <br/>
-            <h3><strong>四、备注：</strong></h3>
-            <section>
-                <p>1、contentWindow: contentWindow属性，这是个只读属性，它虽然不是W3C标准的一部分，但是可以通过Dom对象的contentWindow属性来返回窗口对象，也就是window 对象。它兼容各个浏览器。</p>
-                <p>2、contentDocument: W3C的标准告诉我们，可以通过Dom对象的contentDocument属性来返回文档对象，取得子窗口的 document 对象。IE6，IE7都不支持，IE8开始支持。</p>
-                <p>3、在iframe下JS方法之间和html元素之间，JS成员变量之间是相互不影响的，它和动态包含和静态包含不同。这一点要切记，iframe只是在页面形式上看上去有着包含的关系。其实如果在父页面要调用子页面的方法和元素必须用window对象。</p>
-                <p></p>
-            </section>
-            <br/>
             <br/>
         </div>
     </div>

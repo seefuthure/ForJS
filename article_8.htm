@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"  />
+	<meta content="false" id="twcClient" name="twcClient" />
+	<meta content="yes" name="apple-mobile-web-app-capable"  />
+	<title>专注WEB前端开发 - BOBO园博吧</title>
+	<meta name="keywords" content="前端,前端开发,web前端,web前端开发,web前端工程师">
+	<meta name="description" content="园博吧资源网 - 专注web前端开发，包括web前端开发教程、书籍、api手册、前端框架、前端面试题、前端问答以及一些系列前端开发资源分享，是一个专业技术交流、资源共享平台！">
+	<meta name="author" content="园博吧资源网(www.yuanbo88.com)" />
+	<meta name="copyright" content="www.yuanbo88.com All Rights Reserved" /> 
+	<link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/base_min.css">
+	<link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/common_min.css">
+	<script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"></script>
+	<script src="http://www.yuanbo88.com/dist/minjs/layer/layer.js"></script>
+	<!--[if lt IE 9]>
+	<script>(function(){for(var a=arguments.length,b=0;a>b;b++)document.createElement(arguments[b])})("address","article","aside","audio","canvas","details","figcaption","figure","header","footer","hgroup","menu","nav","section","summary","time","video");</script> 
+	<![endif]-->
+
+	<script>
+	  //加入收藏夹功能
+	  function addBookmark(){
+	    var title="【园博吧资源网】专注WEB前端开发";
+	    var url="http://www.yuanbo88.com/";
+	    if(window.sidebar){
+	      window.sidebar.addPanel(title,url,'');
+	    }else{
+	      try{ 
+	        window.external.AddFavorite(url,title);
+	      }catch(e){
+	        alert("您的浏览器不支持该功能,请使用Ctrl+D收藏本页");
+	      }
+	    }
+	  }
+	</script>
+
+	<link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/other_min.css">
+		<script src="http://www.yuanbo88.com/dist/minjs/shBrushPlug.min.js"></script>
+		<link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/shCore/shCoreDefault.css">
+		<script>SyntaxHighlighter.all();</script>
+		<script>SyntaxHighlighter.defaults['auto-links'] = false;</script>
+		<script src="http://www.yuanbo88.com/dist/minjs/jquery.zclip.js"></script>
+		<style>
+			@media screen and (min-width: 768px) and (max-width: 959px) {
+			  #header{min-width: 100%;}
+			  #top .top-content{width: 100%;}
+			  #topMian{width: 100%;}
+			  #topMian .logo{left: 50%; -webkit-transform: translateX(-50%); transform: translateX(-50%);}
+			  #topMian .topm_nav, .search-warp{ display: none;}
+			  .btn-normal{ float: left;margin-bottom: 5px !important;}
+			  .article-wrap{ width: 900px;}
+			  .foot-wrap{ min-width: 900px;}
+			}
+			@media only screen and (min-width: 480px) and (max-width: 767px) {
+			  #header{min-width: 100%;}
+			  #top .top-content{width: 100%;}
+			  #topMian{width: 100%;}
+			  #topMian .logo{left: 50%; -webkit-transform: translateX(-50%); transform: translateX(-50%);}
+			  #topMian .topm_nav, .search-warp{ display: none;}
+			  .btn-normal{ float: left;margin-bottom: 5px !important;}
+			  .article-wrap{ width: 450px;}
+			  .foot-wrap{ min-width: 450px;}
+			}
+			@media only screen and (max-width: 479px) {
+			  #header{min-width: 100%;}
+			  #top .top-content{width: 100%;}
+			  #topMian{width: 100%;}
+			  #topMian .logo{left: 50%; -webkit-transform: translateX(-50%); transform: translateX(-50%);}
+			  #topMian .topm_nav, .search-warp{ display: none;}
+			  .btn-normal{ float: left;margin-bottom: 5px !important;}
+			  .article-wrap{ width: 350px;}
+			  .foot-wrap{ min-width: 350px;}
+			}
+		</style>
+
+</head>
+<body>
+	<header id="header">
+		<!--public public_top.php start -->
+		<div id="top">
+			<div class="top-content clearfix">
+				<div class="top_r">
+					<dl class="js-isNotLogin">
+							<dd><a href="http://www.yuanbo88.com/m-user-center.html">个人中心</a></dd>
+							<dd><a href="http://www.yuanbo88.com/sign.html">登录</a></dd>
+							<dd><a href="http://www.yuanbo88.com/sign.html?type=2">注册</a></dd>
+							<dd class="topr-qrcode">
+								<a href="javascript:;">关注 “园博吧” 微信公众号</a>
+								<div class="qr-code-wrap">
+									<div class="qr-code-box">
+										<i class="triangle triangle_t"></i>
+										<i class="triangle triangle_t2"></i>
+										<p><img src="http://www.yuanbo88.com/dist/images/qrcode_258.jpg" height="150" width="150" alt="关注“园博吧”微信公众号"></p>
+										<p class="txt">园博吧</p>
+									</div>
+								</div>
+							</dd>
+						</dl>
+								<dl>
+						<dt class="last"><a href="javascript:;" title="【园博吧资源网】专注WEB前端开发" rel="sidebar" onclick="addBookmark();">收藏本站</a></dt>
+					</dl>
+				</div>
+			</div>
+		</div><!-- #top -->
+
+		<div id="topMian">
+			<div class="logo"><a href="http://www.yuanbo88.com/" title="园博吧"><img src="http://www.yuanbo88.com/dist/images/styleimg/logo.png" height="60" width="170" alt="园博吧"></a></div>
+			<div class="topm_nav clearfix">
+				<ul class="clearfix fl">
+					<li><a href="http://www.yuanbo88.com/category.html?type=1" class="s-title">前端开发</a></li>
+					<li><a href="http://www.yuanbo88.com/category.html?type=2" class="s-title">前端扩展</a></li>
+					<li><a href="http://www.yuanbo88.com/booklist.html" class="s-title">参考书籍<i class="icon-fire ml5"></i></a></li>
+					<li><a href="http://www.yuanbo88.com/catedemo.html" class="s-title">演示案例<i class="icon-fire ml5"></i></a></li>
+					<li>
+						<a href="javascript:;" class="s-title">其他</a>
+						<dl>
+							<dt>
+								<i class="triangle triangle_t"></i>
+								<i class="triangle triangle_t2"></i>
+							</dt>
+							</dt>
+							<dd><a href="http://www.yuanbo88.com/catewei.html">微话题</a></dd>
+							<dd><a href="http://www.yuanbo88.com/weiword.html">微言</a></dd>
+							<dd><a href="http://www.yuanbo88.com/dou.html">你真逗</a></dd>
+							<dd><a href="http://www.yuanbo88.com/about.html">关于</a></dd>
+						</dl>
+					</li>
+				</ul>
+
+				<a class="demo-banner fr" href="http://www.yuanbo88.com/demo/22.html" title="园博吧Exclusive"><img src="http://www.yuanbo88.com/demo/demo_topic_22.jpg" alt="园博吧Exclusive" width="75" height="40"></a>
+			</div>
+
+			<div class="search-warp clearfix fr">
+				<p class="error-tips js-errorTips"></p>
+		        <div class="search-area" data-search="top-banner">
+		            <input class="search-input" id="js-searchInput" placeholder="请输入搜索的关键词..." type="text" autocomplete="off" onkeypress="getKey();">
+		        </div>
+		        <div class="showhide-search" id="js-globalSearch"><i class="iconfont">&#xf002d;</i></div>
+		    </div>
+		</div><!-- #topMian -->
+		<!--public public_top.php end -->	
+	</header>
+
+
+
+	<div class="article-wrap">
+		<h1>NodeJS中模块导出用module.exports还是exports？</h1>
+		<div class="article-content">
+
+
+
+
+
+
+<p>
+	我们在之前的博文中知道 “一个模块可以通过module.exports或exports将函数、变量等导出，以使其它JavaScript脚本通过require()函数将模块引入并使用该模块的函数或者变量”。那么,到底应该用module.exports还是用exports呢？
+</p>
+
+<h3><strong>一、先上结论:</strong></h3>
+<section>
+<p class="fb-black">
+1、module.exports 默认值为一个空对象 {}；<br/>
+2、exports变量 是指向的 module.exports 的引用；<br/>
+3、require() 返回的是 module.exports 而不是 exports。 
+</p>
+</section><br/>
+
+<h3><strong>二、上DEMO：</strong></h3>
+<section>
+<p>我们在demo中定义两个js模块文件，分别是 module1.js 和 module2.js 。其中module1.js模块require引入module2.js。</p>
+<em class="fb-black">1、module.exports 等于 exports 的情况：</em><br/>
+<span>1.1:</span>
+<pre class="brush: js;">
+//这是module1.js
+var module2 = require('./module2.js');
+module2.showTips(); // By exports...
+console.log('module2.someProperty: ', module2.someProperty); // someProperty from exports
+</pre>
+<pre class="brush: js;">
+//这是module2.js
+module.exports.showTips = function(){
+  console.log('By module.exports...');
+};
+exports.showTips = function(){
+  console.log('By exports...');
+};
+module.exports.someProperty = 'someProperty from module.exports';
+exports.someProperty = 'someProperty from exports';
+</pre>
+
+<span>1.2:</span>
+<pre class="brush: js;">
+//这是module1.js
+var module2 = require('./module2.js');
+module2.showTips();// By module.exports...
+console.log('module2.someProperty: ', module2.someProperty);//someProperty from module.exports
+</pre>
+<pre class="brush: js;">
+//这是module2.js: （注意：这里和上面的1.1例子相比，只是module.exports对象和exports对象的位置不同而已）
+exports.showTips = function(){
+  console.log('By exports...');
+};
+module.exports.showTips = function(){
+  console.log('By module.exports...');
+};
+exports.someProperty = 'someProperty from exports';
+module.exports.someProperty = 'someProperty from module.exports';
+</pre>
+总结：通过以上两个例子1.1和1.2来看，如果只是导出对象的 “方法” 或者 “属性” 的话，那么用 module.exports 和 exports 是一样的，因为所有的 exports 收集到的属性和方法，都赋值给了Module.exports（<strong>在Module.exports本身不具备任何属性和方法的情况下</strong>）。NodeJS开发者建议<strong>导出对象</strong>时用<strong>module.exports</strong>。<br/><br/>
+
+<em class="fb-black">2、module.exports 不等于 exports 的情况：</em><br/>
+<span>2.1:</span>
+<pre class="brush: js;">
+//这是module1.js
+var module2 = require('./module2.js');
+module2(); // By module.exports...
+console.log('module2.someProperty: ', module2.someProperty); // someProperty from module.exports
+</pre>
+<pre class="brush: js;">
+//这是module2.js
+module.exports = function(){
+  console.log('By module.exports...');
+};
+exports = function(){
+  console.log('By exports...');
+};
+module.exports.someProperty = 'someProperty from module.exports';
+exports.someProperty = 'someProperty from exports';
+</pre>
+<span>2.2:</span>
+<pre class="brush: js;">
+//这是module1.js
+var module2 = require('./module2.js');
+module2(); // By module.exports...
+console.log('module2.someProperty: ', module2.someProperty); // someProperty from exports
+</pre>
+<pre class="brush: js;">
+//这是module2.js
+exports = module.exports = function(){ // 注意：把exports 重新指向 module.exports的话
+  console.log('By module.exports...');
+};
+module.exports.someProperty = 'someProperty from module.exports';
+exports.someProperty = 'someProperty from exports';
+</pre>
+从上面例子2.1，我们可以看到，如果<strong> module.exports 指向新的函数对象时（module.exports默认是空对象{}）, exports收集来的信息将被忽略</strong>。所以，如果<strong>导出多个方法或者属性变量</strong>的情况下，用<strong>exports</strong>。<br/>
+我们经常看到这样的代码：
+<pre class="brush: js;">
+exports = module.exports = someObject
+</pre>
+实际上，上面代码等价于：
+<pre class="brush: js;">
+module.exports = someObject
+exports = module.exports
+</pre>
+原理就是 module.exports 指向新的对象时，exports 断开了与 module.exports 的引用，那么通过 exports = module.exports 让 exports 重新指向 module.exports 即可（可以查看2.2例子）。
+</section><br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+	</div><!-- .article-wrap -->
+
+
+
+	<div class="foot-wrap">
+		<div class="social">
+			<a class="github" href="https://github.com/bobo88" target="_blank" title="github">github</a> 
+			<a class="weibo" href="http://weibo.com/boob88" target="_blank" title="weibo">weibo</a> 
+			<a class="facebook" href="https://www.facebook.com/yuanbo88" target="_blank" title="facebook">facebook</a> 
+			<a class="google" href="https://plus.google.com/115948228959846742637" target="_blank" title="google">google</a> 
+			<a class="twitter" href="https://twitter.com/yuanbo8888" target="_blank" title="twitter">twitter</a> 
+			<a class="tumblr" href="http://yuanbo88.tumblr.com/" target="_blank" title="tumblr">tumblr</a> 
+			<a class="linkedin" href="https://www.linkedin.com/in/bobo88" target="_blank" title="linkedin">linkedin</a> 
+			<a class="wechat" href="javascript:;" title="wechat">
+				wechat 
+				<span>
+					<i class="triangle triangle_b"></i>
+					<i class="triangle triangle_b2"></i>
+					<img src="http://www.yuanbo88.com/dist/images/qrcode_258.jpg" height="150" width="150" alt="关注“BOBO园博吧”微信公众号">	
+				</span>
+			</a>
+		</div>
+		<div class="foot-copyright">
+			Copyright ©2016-2017 yuanbo88.com All Rights Reserved.
+		</div><!-- .foot-copyright -->
+	</div><!-- .foot-wrap -->
+
+	<script src="http://www.yuanbo88.com/dist/minjs/plug.min.js"></script>
+	<script src="http://www.yuanbo88.com/dist/minjs/common.min.js"></script>
+</body>
+</html>
