@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="false" id="twcClient" name="twcClient" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <title>专注WEB前端开发 - BOBO园博吧</title>
+    <meta name="keywords" content="前端,前端开发,web前端,web前端开发,web前端工程师">
+    <meta name="description" content="园博吧资源网 - 专注web前端开发，包括web前端开发教程、书籍、api手册、前端框架、前端面试题、前端问答以及一些系列前端开发资源分享，是一个专业技术交流、资源共享平台！">
+    <meta name="author" content="园博吧资源网(www.yuanbo88.com)" />
+    <meta name="copyright" content="www.yuanbo88.com All Rights Reserved" />
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/base_min.css">
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/common_min.css">
+    <script src="http://www.yuanbo88.com/dist/minjs/jquery-1.9.1.min.js"></script>
+    <script src="http://www.yuanbo88.com/dist/minjs/layer/layer.js"></script>
+    <!--[if lt IE 9]>
+	<script>(function(){for(var a=arguments.length,b=0;a>b;b++)document.createElement(arguments[b])})("address","article","aside","audio","canvas","details","figcaption","figure","header","footer","hgroup","menu","nav","section","summary","time","video");</script> 
+	<![endif]-->
+    <script>
+    //加入收藏夹功能
+    function addBookmark() {
+        var title = "【园博吧资源网】专注WEB前端开发";
+        var url = "http://www.yuanbo88.com/";
+        if (window.sidebar) {
+            window.sidebar.addPanel(title, url, '');
+        } else {
+            try {
+                window.external.AddFavorite(url, title);
+            } catch (e) {
+                alert("您的浏览器不支持该功能,请使用Ctrl+D收藏本页");
+            }
+        }
+    }
+    </script>
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/other_min.css">
+    <script src="http://www.yuanbo88.com/dist/minjs/shBrushPlug.min.js"></script>
+    <link rel="stylesheet" href="http://www.yuanbo88.com/dist/css/shCore/shCoreDefault.css">
+    <script>
+    SyntaxHighlighter.all();
+    </script>
+    <script>
+    SyntaxHighlighter.defaults['auto-links'] = false;
+    </script>
+    <script src="http://www.yuanbo88.com/dist/minjs/jquery.zclip.js"></script>
+    <style>
+    @media screen and (min-width: 768px) and (max-width: 959px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 900px;
+        }
+        .foot-wrap {
+            min-width: 900px;
+        }
+    }
+    
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 450px;
+        }
+        .foot-wrap {
+            min-width: 450px;
+        }
+    }
+    
+    @media only screen and (max-width: 479px) {
+        #header {
+            min-width: 100%;
+        }
+        #top .top-content {
+            width: 100%;
+        }
+        #topMian {
+            width: 100%;
+        }
+        #topMian .logo {
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        #topMian .topm_nav,
+        .search-warp {
+            display: none;
+        }
+        .btn-normal {
+            float: left;
+            margin-bottom: 5px !important;
+        }
+        .article-wrap {
+            width: 350px;
+        }
+        .foot-wrap {
+            min-width: 350px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <!--public public_top.php start -->
+        <div id="top">
+            <div class="top-content clearfix">
+                <div class="top_r">
+                    <dl class="js-isNotLogin">
+                        <dd><a href="http://www.yuanbo88.com/m-user-center.html">个人中心</a></dd>
+                        <dd><a href="http://www.yuanbo88.com/sign.html">登录</a></dd>
+                        <dd><a href="http://www.yuanbo88.com/sign.html?type=2">注册</a></dd>
+                        <dd class="topr-qrcode">
+                            <a href="javascript:;">关注 “园博吧” 微信公众号</a>
+                            <div class="qr-code-wrap">
+                                <div class="qr-code-box">
+                                    <i class="triangle triangle_t"></i>
+                                    <i class="triangle triangle_t2"></i>
+                                    <p><img src="http://www.yuanbo88.com/dist/images/qrcode_258.jpg" height="150" width="150" alt="关注“园博吧”微信公众号"></p>
+                                    <p class="txt">园博吧</p>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt class="last"><a href="javascript:;" title="【园博吧资源网】专注WEB前端开发" rel="sidebar" onclick="addBookmark();">收藏本站</a></dt>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <!-- #top -->
+        <div id="topMian">
+            <div class="logo">
+                <a href="http://www.yuanbo88.com/" title="园博吧"><img src="http://www.yuanbo88.com/dist/images/styleimg/logo.png" height="60" width="170" alt="园博吧"></a>
+            </div>
+            <div class="topm_nav clearfix">
+                <ul class="clearfix fl">
+                    <li><a href="http://www.yuanbo88.com/category.html?type=1" class="s-title">前端开发</a></li>
+                    <li><a href="http://www.yuanbo88.com/category.html?type=2" class="s-title">前端扩展</a></li>
+                    <li><a href="http://www.yuanbo88.com/booklist.html" class="s-title">参考书籍<i class="icon-fire ml5"></i></a></li>
+                    <li><a href="http://www.yuanbo88.com/catedemo.html" class="s-title">演示案例<i class="icon-fire ml5"></i></a></li>
+                    <li>
+                        <a href="javascript:;" class="s-title">其他</a>
+                        <dl>
+                            <dt>
+                                <i class="triangle triangle_t"></i>
+                                <i class="triangle triangle_t2"></i>
+                            </dt>
+                            </dt>
+                            <dd><a href="http://www.yuanbo88.com/catewei.html">微话题</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/weiword.html">微言</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/dou.html">你真逗</a></dd>
+                            <dd><a href="http://www.yuanbo88.com/about.html">关于</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+                <a class="demo-banner fr" href="http://www.yuanbo88.com/demo/22.html" title="园博吧Exclusive"><img src="http://www.yuanbo88.com/demo/demo_topic_22.jpg" alt="园博吧Exclusive" width="75" height="40"></a>
+            </div>
+            <div class="search-warp clearfix fr">
+                <p class="error-tips js-errorTips"></p>
+                <div class="search-area" data-search="top-banner">
+                    <input class="search-input" id="js-searchInput" placeholder="请输入搜索的关键词..." type="text" autocomplete="off" onkeypress="getKey();">
+                </div>
+                <div class="showhide-search" id="js-globalSearch"><i class="iconfont">&#xf002d;</i></div>
+            </div>
+        </div>
+        <!-- #topMian -->
+        <!--public public_top.php end -->
+    </header>
+    <div class="article-wrap">
+        <h1>Javascript动态添加属性Form不能提交的坑</h1>
+        <div class="article-content">
+            <h3><strong>一、前言：</strong></h3>
+            <section>
+                <p>
+                    前几天，在帮后台处理一个表单提交的时候，发现有个坑，在这里做个简单的记录，一是理顺下这个坑到底是什么情况，二是提醒下阅读此文的朋友避开这个坑。
+                    <br/> 后台管理系统主要是用table布局的，也不知道是谁写的，这是坑存在的前提。
+                    <br/>
+                    <small>结论是：代码一定要符合WEB标准，否则很容易出现奇葩的问题而不自知。</small>
+                </p>
+            </section>
+            <br/>
+            <h3><strong>二、案例对比：</strong></h3>
+            <section>
+                <div class="mb10">
+                    <p><span class="fb-black">原始代码：</span></p>
+                    <pre class="brush: xml;">
+				&lt;table&gt;
+					&lt;form action="/"&gt;
+						&lt;tbody&gt;
+							&lt;tr&gt;
+								&lt;td&gt;&lt;input class="input-normal" type="text" value="" name="name" placeholder="请输入姓名"&gt;&lt;/td&gt;
+								&lt;td&gt;&lt;input class="input-normal" type="text" value="" name="password" placeholder="请输入密码"&gt;&lt;/td&gt;
+								&lt;td&gt;&lt;a href="javascript:;" class="btn-normal js-addAgeInput"&gt;添加一个输入年龄的input框&lt;/a&gt;&lt;/td&gt;
+								&lt;td&gt;&lt;button class="btn-normal js-submitForm"&gt;提交表单&lt;/button&gt;&lt;/td&gt;
+							&lt;/tr&gt;
+						&lt;/tbody&gt;
+					&lt;/form&gt;
+				&lt;/table&gt;
+			</pre>
+                    <table>
+                        <form action="/">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input class="input-normal" type="text" value="" name="name" placeholder="请输入姓名">
+                                    </td>
+                                    <td>
+                                        <input class="input-normal" type="text" value="" name="password" placeholder="请输入密码">
+                                    </td>
+                                    <td><a href="javascript:;" class="btn-normal js-addAgeInput">添加一个输入年龄的input框</a></td>
+                                    <td>
+                                        <button class="btn-normal js-submitForm">提交表单</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </form>
+                    </table>
+                    <p>我们可以看出，你输入的内容根本没法获取到，我们审查元素可以看出 <strong>Form表单里面的input等元素并没有包裹在form标签里面</strong> ，这样的HTML标签写法是不规范的。审查结果如下图所示：</p>
+                    <p><img src="http://www.yuanbo88.com/dist/images/domeimg/lazyload.gif" data-original="http://www.yuanbo88.com/dist/images/domeimg/article/2017/nestedForm/nested_form.jpg" alt="Javascript动态添加属性Form不能提交的坑"></p>
+                </div>
+                <div class="mb10">
+                    <p><span class="fb-black">调整后的代码：</span></p>
+                    <pre class="brush: xml;">
+				&lt;form action="/"&gt;
+					&lt;table&gt;
+						&lt;tbody&gt;
+							&lt;tr&gt;
+								&lt;td&gt;&lt;input class="input-normal" type="text" value="" name="name" placeholder="请输入姓名"&gt;&lt;/td&gt;
+								&lt;td&gt;&lt;input class="input-normal" type="text" value="" name="password" placeholder="请输入密码"&gt;&lt;/td&gt;
+								&lt;td&gt;&lt;a href="javascript:;" class="btn-normal js-addAgeInput"&gt;添加一个输入年龄的input框&lt;/a&gt;&lt;/td&gt;
+								&lt;td&gt;&lt;button class="btn-normal js-submitForm"&gt;提交表单&lt;/button&gt;&lt;/td&gt;
+							&lt;/tr&gt;
+						&lt;/tbody&gt;
+					&lt;/table&gt;
+				&lt;/form&gt;
+			</pre>
+                    <form action="/">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input class="input-normal" type="text" value="" name="name" placeholder="请输入姓名">
+                                    </td>
+                                    <td>
+                                        <input class="input-normal" type="text" value="" name="password" placeholder="请输入密码">
+                                    </td>
+                                    <td><a href="javascript:;" class="btn-normal js-addAgeInput">添加一个输入年龄的input框</a></td>
+                                    <td>
+                                        <button class="btn-normal js-submitForm">提交表单</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <p>代码调整后，我们可以看到，你输入任何内容，表单提交后都能正常的获取到。<strong>所以，我们写HTML标签的时候，一定要注意标签的嵌套要符合W3C的WEB标准</strong>。</p>
+                </div>
+            </section>
+            <br/>
+            <script>
+            $('.js-addAgeInput').click(function(event) {
+                var ageInput = '<td><input class="input-normal" type="text" value="" name="age" placeholder="请输入年龄"></td>',
+                    $this = $(this);
+
+                if (parseInt($this.attr('data-isadded')) === 1) {
+                    GLOBAL.PopObj.alert({
+                        content: '你已经添加了输入age的input框！'
+                    });
+                    return false;
+                }
+                $this.parent('td').before(ageInput);
+                $this.attr('data-isadded', 1);
+            });
+            $('.js-submitForm').click(function(event) {
+                event.preventDefault();
+                var $this = $(this),
+                    name = $this.parents('form').find('input[name="name"]').val(),
+                    psw = $this.parents('form').find('input[name="password"]').val(),
+                    age = $this.parents('form').find('input[name="age"]').val();
+                GLOBAL.PopObj.alert({
+                    content: '姓名:' + name + ', 密码:' + psw + ', 年龄:' + age
+                });
+            });
+            </script>
+        </div>
+    </div>
+    <!-- .article-wrap -->
+    <div class="foot-wrap">
+        <div class="social">
+            <a class="github" href="https://github.com/bobo88" target="_blank" title="github">github</a>
+            <a class="weibo" href="http://weibo.com/boob88" target="_blank" title="weibo">weibo</a>
+            <a class="facebook" href="https://www.facebook.com/yuanbo88" target="_blank" title="facebook">facebook</a>
+            <a class="google" href="https://plus.google.com/115948228959846742637" target="_blank" title="google">google</a>
+            <a class="twitter" href="https://twitter.com/yuanbo8888" target="_blank" title="twitter">twitter</a>
+            <a class="tumblr" href="http://yuanbo88.tumblr.com/" target="_blank" title="tumblr">tumblr</a>
+            <a class="linkedin" href="https://www.linkedin.com/in/bobo88" target="_blank" title="linkedin">linkedin</a>
+            <a class="wechat" href="javascript:;" title="wechat">
+				wechat 
+				<span>
+					<i class="triangle triangle_b"></i>
+					<i class="triangle triangle_b2"></i>
+					<img src="http://www.yuanbo88.com/dist/images/qrcode_258.jpg" height="150" width="150" alt="关注“BOBO园博吧”微信公众号">	
+				</span>
+			</a>
+        </div>
+        <div class="foot-copyright">
+            Copyright ©2016-2017 yuanbo88.com All Rights Reserved.
+        </div>
+        <!-- .foot-copyright -->
+    </div>
+    <!-- .foot-wrap -->
+    <script src="http://www.yuanbo88.com/dist/minjs/plug.min.js"></script>
+    <script src="http://www.yuanbo88.com/dist/minjs/common.min.js"></script>
+</body>
+
+</html>
